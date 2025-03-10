@@ -1,0 +1,13 @@
+{
+  "src/css/main.scss": {
+    "file": "assets/main-C_bNUNz4.css",
+    "src": "src/css/main.scss",
+    "isEntry": true
+  },
+  "src/js/main.js": {
+    "file": "assets/main-l0sNRNKZ.js",
+    "name": "main",
+    "src": "src/js/main.js",
+    "isEntry": true
+  }
+}

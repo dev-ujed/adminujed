@@ -1,0 +1,34 @@
+/*
+ * Sonata CSS Framework v0.3.1
+ * https://github.com/alexcandelas/sonata
+ * MIT License
+ */
+
+// =============================================================================
+// Contents
+// =============================================================================
+//
+// Settings ...... Global variables and configuration.
+// Tools ......... Mixins and functions.
+// Generic ....... Resets and normalization.
+// Elements ...... Unclassed HTML elements.
+// Objects ....... Layout and design patterns (no cosmetics).
+// Support ....... Simple styled elements and global animations.
+// Components .... Designed pieces of UI.
+// Utilities ..... Overrides and utility classes.
+
+
+
+@import "~/sonatacss/layers/_settings";
+
+@import "~/sonatacss/layers/_tools";
+
+@import "~/sonatacss/layers/_generic";
+
+@import "~/sonatacss/layers/_elements";
+
+@import "~/sonatacss/layers/_abstractions";
+
+@import "~/sonatacss/layers/_components";
+
+@import "~/sonatacss/layers/_utilities";
