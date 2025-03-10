@@ -1,13 +1,20 @@
 {
-  "src/css/main.scss": {
+  "_vendor-DrC4xKUi.js": {
+    "file": "assets/vendor-DrC4xKUi.js",
+    "name": "vendor"
+  },
+  "resources/css/main.scss": {
     "file": "assets/main-C_bNUNz4.css",
-    "src": "src/css/main.scss",
+    "src": "resources/css/main.scss",
     "isEntry": true
   },
-  "src/js/main.js": {
-    "file": "assets/main-l0sNRNKZ.js",
+  "resources/js/main.js": {
+    "file": "assets/main-BWkjjv4Q.js",
     "name": "main",
-    "src": "src/js/main.js",
-    "isEntry": true
+    "src": "resources/js/main.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor-DrC4xKUi.js"
+    ]
   }
 }

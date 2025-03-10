@@ -9,12 +9,15 @@
 	{% vite %}
     {% vite 'resources/css/main.scss' 'resources/js/main.js' %}
   </head>
-  <body>	
-    <div class="container" id="app">
+  <body data-root="{{SITE_URL}}">	
+	{% include "_estructure/header.html" %}
 	
-		{% block content %}
-
-        {% endblock %}
+	<div id="dashboard">
+    	<div class="container">
+			{% block content %}
+        	{% endblock %}
+		</div>
 	</div>
+	{% include "_estructure/footer.html" %}
   </body>
 </html>
