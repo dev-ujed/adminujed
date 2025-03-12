@@ -6,5 +6,4 @@ from .models import Omov_alumno
 
 def index(request):
 	alumno = Omov_alumno.objects.all()
-	print(alumno)
 	return render(request, 'public/index.html')
