@@ -1,0 +1,4 @@
+django-environ
+django-vite-plugin
+psycopg2-binary
+django==3.2

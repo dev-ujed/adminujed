@@ -4,18 +4,16 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-	<meta name="csrf-token" content="{{ csrf_token }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />	
-	{% vite %}
+	  <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIE UJED</title>	
+	  {% vite %}
     {% vite 'resources/css/main.scss' 'resources/js/main.js' %}
   </head>
-  <body data-root="{{SITE_URL}}">	
-	{% include "_estructure/header.html" %}
-	
-	<div id="dashboard">
-			{% block content %}
-        	{% endblock %}
-	</div>
-	{% include "_estructure/footer.html" %}
+  <body data-root="{{SITE_URL}}">
+    <div id="dashboard">
+        {% block content %}
+        {% endblock %}
+    </div>
   </body>
 </html>
