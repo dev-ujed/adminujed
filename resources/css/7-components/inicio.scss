@@ -21,8 +21,8 @@
 .login__form input {
     width: 100%;
     padding: 8px;
-	background-color: #F9FAFB;
-    border: 1px solid #E9ECEE;
+	background-color: $color-gray;
+    border: 1px solid $color-white;
     border-radius: 6px;
 	padding: 10px 10px 10px 40px;
 }
@@ -45,8 +45,8 @@
 .login__form button {
     margin-top: 10px;
     padding: 10px;
-    background-color: #C00011;
-    color: white;
+    background-color: $color-primary;
+    color: $color-white;
     border: none;
     cursor: pointer;
     border-radius: 6px;
@@ -70,7 +70,7 @@
 		width: 474px;
 		height: 684px;
 		max-width: 400px;
-		background-color: white;
+		background-color: $color-white;
 	}
 }
 
