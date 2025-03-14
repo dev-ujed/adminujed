@@ -90,8 +90,15 @@ DATABASE_ROUTERS = ['public.dbrouters.oracleRouter',]
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'OPTIONS': {
+            'options': '-c search_path=sie'
+        },
+        'NAME': env.str('DB_NAME'),
+        'USER': env.str('DB_USER'),
+        'PASSWORD': env.str('DB_PASS'),
+        'HOST': env.str('DB_HOST'),
+        'PORT': env.str('DB_PORT'),
     },
 	'desarrollo': {
         'ENGINE': 'django.db.backends.oracle',
@@ -122,6 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'public.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
