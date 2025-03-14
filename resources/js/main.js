@@ -1,7 +1,15 @@
 import { createApp, nextTick } from "vue"; // Usa createApp en lugar de Vue
 import Inicio from "./public/components/Inicio.vue";
+import axios from 'axios'; 
 
+window.axios = axios;
 
+function getCSRFToken() {
+    const csrfToken = document.cookie.split('; ').find(row => row.startsWith('csrftoken='));
+    return csrfToken ? csrfToken.split('=')[1] : null;
+}
+axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken();
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 // Crea la aplicación
 createApp({

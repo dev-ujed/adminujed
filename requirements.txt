@@ -1,4 +1,12 @@
-django-environ
-django-vite-plugin
-psycopg2-binary
-django==3.2
+asgiref==3.8.1
+cx_Oracle==8.3.0
+Django==3.2
+django-environ==0.12.0
+django-vite==3.1.0
+django_vite_plugin==3.0.4
+djangorestframework==3.12.4
+psycopg2-binary==2.9.10
+pytz==2025.1
+setuptools==76.0.0
+sqlparse==0.5.3
+tzdata==2025.1
