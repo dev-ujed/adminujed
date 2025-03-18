@@ -14,6 +14,5 @@ static/tramites/*
 /documentos
 /logs
 /env/
-/static/img
 db.sqlite3
 .hotfile
