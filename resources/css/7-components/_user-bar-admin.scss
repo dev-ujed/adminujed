@@ -1,0 +1,308 @@
+.user-bar-admin {
+    align-items: center;
+    background-color: $color-black;
+    box-shadow: 0 3px 6px rgba(#000, 0.16);
+    display: flex;
+    font-size: rem(13px);
+    height: 60px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.user-bar-admin__profile {
+    align-items: center;
+    display: flex;
+    height: 60px;
+    justify-content: right;
+    padding-right: 15px;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='496 497.5 8 5'><path fill='%23e7e9ec' d='M497.048 497.972c-.252-.295-.526-.295-.825 0-.297.25-.297.523 0 .818l3.366 3.272c.25.25.524.25.822 0l3.364-3.272c.298-.295.298-.568 0-.818-.274-.273-.56-.273-.858 0L500 500.63l-2.952-2.658z'/></svg>") no-repeat 0 0;
+        content: "";
+        display: inline-block;
+        height: 5px;
+        margin-left: 0.5em;
+        margin-top: 0.2em;
+        vertical-align: middle;
+        width: 8px;
+    }
+}
+
+.user-bar-admin__avatar {
+    height: auto;
+    vertical-align: initial;
+    width: 100%;
+}
+
+.user-bar-admin__avatar-container {
+    border-radius: 9999px;
+    box-shadow: inset 0 2px 2px rgba(#000, 0.4);
+    display: inline-block;
+    height: 40px;
+    overflow: hidden;
+    width: 40px;
+
+    &--count {
+        border: 1px solid $color-border;
+        border-radius: 50%;
+        box-shadow: none;
+        text-align: center;
+    }
+
+    &--add {
+        background-color: $color-gray-10;
+        border: 1px solid $color-border;
+        border-radius: 50%;
+        box-shadow: none;
+        overflow: hidden;
+        text-align: center;
+        vertical-align: top;
+
+        &:hover {
+            border: 1px solid $color-gray-60;
+        }
+    }
+}
+
+.user-bar-admin__user-name {
+    color: $color-gray-30;
+    display: none;
+    font-size: rem(15);
+    font-weight: 100;
+    margin-bottom: 0;
+    margin-left: 0.75em;
+
+    display: none;
+
+}
+
+.user-bar-admin__menu-avatar-container {
+    color: #fff;
+    font-size: rem(14);
+    padding: 0.25em 1em;
+    text-align: center;
+}
+
+.user-bar-admin__menu-avatar {
+    border-radius: 50%;
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+}
+
+.user-bar-admin__profile-menu {
+    background-color: #37424d;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px rgba(#000, 0.2);
+    font-size: 13px;
+    list-style: none;
+    margin: 0;
+    max-width: 300px;
+    min-width: 200px;
+    z-index: 5;
+    
+
+    @include position(absolute, 70px 10px null null);
+
+    &::before{
+        @include triangle(top, #37424d, 8px);
+        @include position(absolute, -7px 6px null null);
+        z-index: 2;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        height: 10px;
+        @include position(absolute, -10px null null 0);
+        width: 100%;
+    }
+
+    &--hide { animation: hide-profile-menu 150ms ease-in forwards; }
+    &--show { animation: show-profile-menu 250ms ease-out forwards; }
+
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+   
+}
+
+.user-bar-admin__profile:hover .user-bar-admin__profile-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.user-bar-admin__profile-menu-item {
+    border-top: 1px solid darken(#adb5bd, 36%);
+
+    & .name {
+        color: #fff;
+        font-size: rem(14);
+        margin-bottom: 0;
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    & .rol {
+        color: $color-gray-60;
+        font-size: rem(11);
+        padding-bottom: 18px;
+        text-align: center;
+    }
+
+    & .user-bar__avatar-container {
+        display: block;
+        height: 82px;
+        margin: 15px auto 0;
+        width: 82px;
+    }
+
+    &:first-child {
+        border-top: 0;
+    }
+}
+
+.user--info {
+    background: #2d363e;
+    border-radius: 4px 4px 0 0;
+    padding-top: 15px;
+}
+
+.user-bar-admin__profile-menu-link {
+    border-bottom: 1px solid rgba(#fff, 0.1);
+    border-radius: 3px;
+    color: $color-gray-50;
+    display: block;
+    font-size: rem(13);
+    font-weight: 400;
+    min-width: 180px;
+    padding: 1em 15px;
+    text-decoration: none;
+    transition: background-color 200ms ease-out, color 200ms ease-out;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: lighten(#37424d, 3%);
+        color: #fff;
+        text-decoration: none;
+    }
+
+    &--logout {
+        background-color: #2d363e;
+        font-size: rem(12);
+        position: relative;
+
+        &:active,
+        &:focus,
+        &:hover {
+            background-color: darken(#2d363e, 3%);
+
+            & > .user-bar__logout-icon {
+                color: #b55;
+            }
+        }
+    }
+}
+
+.user-bar-admin__btn-icon {
+    width: 18px;
+    height: 14px;
+    margin-right: 1rem;
+}
+
+.user-bar-admin__btn {
+    background-color: transparent;
+    border: 2px solid transparent;
+    color: $color-gray-10;
+    font-size: rem(13);
+    margin: 0;
+    padding: 1em 1.5em;
+    transition: color 150ms ease-out;
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: #fff;
+    }
+
+    &:focus {
+        border: 2px solid $color-blue-50;
+        outline: 0;
+    }
+
+    &:focus:not(:focus-visible) {
+        border: 0;
+    }
+}
+
+.user-bar-admin__logout-icon {
+    line-height: 1;
+    margin-right: 0.4em;
+    stroke: $color-gray-50;
+    @include position(relative, 0.1em null null null); /* 1 */
+    transition: stroke 150ms ease-out;
+    vertical-align: top;
+    width: rem(15);
+
+    :active > &,
+    :focus > &,
+    :hover > & {
+        stroke: #b55;
+    }
+
+    .dashboard & {
+        top: 0.1em; /* 1 */
+    }
+}
+
+.user-bar-admin__btn-text-large{
+    display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1080px){
+    .user-bar-admin{
+        z-index: 1000;
+    }
+
+    .user-bar-admin__btn-text-large{
+        display: inline-block;
+    }
+
+    .user-bar-admin__btn-text{
+        display: none;
+    }
+
+    .user-bar-admin__user-name{
+        display: block;
+    }
+
+    .user-bar-admin__btn-icon {
+        display: none;
+    }
+}
+
+@media (min-width: 1080px){
+    .user-bar-admin__btn-text-large{
+        display: inline-block;
+    }
+    .user-bar-admin__btn-text{
+        display: none;
+    }
+
+    .user-bar-admin__user-name{
+        display: block;
+    }
+
+    .user-bar-admin{
+        z-index: 1000;
+    }
+
+    .user-bar-admin__btn-icon {
+        display: none;
+    }
+}
