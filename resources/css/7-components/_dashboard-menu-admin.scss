@@ -1,0 +1,205 @@
+.close-sidebar-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+}
+
+.dashboard-menu-admin {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    transition: left 0.3s ease;
+    padding: 1rem;
+}
+
+.dashboard-menu-admin__img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cuando el sidebar está visible */
+.dashboard-menu-admin--visible {
+    left: 0; 
+}
+
+.dashboard-menu-admin__section{
+    padding: 1rem;
+}
+
+.dashboard-menu-admin__col-sections {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+.dashboard-menu-admin__section-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    color: $color-primary;
+    font-size: 18px;
+    padding: 1rem;
+    border: 1px solid $color-white;
+    cursor: pointer;
+}
+
+.dashboard-menu-admin__title {
+    width: 48px;
+    height: 48px;
+    color: $color-primary;
+}
+
+.dashboard-menu-admin__icon {
+    margin-right: 10px;
+}
+
+
+@media (min-width: 768px){
+    
+    .dashboard-menu-admin{
+        width: 80px;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        background-color: #2D363E;
+        color: white;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    // ul
+    .dashboard-menu-admin__col-sections{
+        padding: 0;
+        display: flex;
+        flex-direction: column; 
+        justify-content: flex-start;
+        align-items: center;
+        flex-grow: 1;
+        height: 100%;
+    }
+
+    //li
+    .dashboard-menu-admin__section{
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .dashboard-menu-admin__section-btn:focus {
+        outline: none; 
+    }
+
+    .dashboard-menu-admin__section-btn{
+        border: none;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+    
+    .dashboard-menu-admin__section-btn span{
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 120%;
+        text-align: center;
+        color: $color-white;
+    }
+
+    .dashboard-menu-admin__title[src*='Icon users-outline_red.png'] {
+        content: url('/static/img/Icon users-outline.png');
+    }
+
+    .dashboard-menu-admin__title[src*='Icon_red.png'] {
+        content: url('/static/img/Icon.png');
+    }
+
+    .dashboard-menu-admin__section--active {
+        background-color: $color-primary;
+        width: 100%;
+    }
+
+    .dashboard-menu-admin__section-btn img {
+        
+    }
+
+    .dashboard-menu-admin__img, .close-sidebar-btn{
+        display: none;
+    }
+
+}
+
+
+/*.dashboard-menu-admin {
+    width: 80px;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: #2D363E;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-menu-admin__col-sections {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-menu-admin__section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-menu-admin__section-btn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: left;
+}
+
+.dashboard-menu-admin__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.dashboard-menu-admin__section--active {
+    background-color: $color-primary;
+}*/

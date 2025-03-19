@@ -1,0 +1,32 @@
+/*
+===============================================================================
+Triangle
+===============================================================================
+*/
+
+/**
+ * Create a triangle shape in generated content.
+ */
+ @mixin triangle($direction: bottom, $color: $color-text, $size: 6px) {
+    $triangle-direction: (
+        bottom: top,
+        left:   right,
+        right:  left,
+        top:    bottom
+    );
+
+    @if $direction == top or $direction == bottom {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+    }
+    @else if $direction == left or $direction == right {
+        border-bottom: $size solid transparent;
+        border-top: $size solid transparent;
+    }
+
+    border-#{map-get($triangle-direction, $direction)}: $size solid $color;
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+}

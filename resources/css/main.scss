@@ -23,6 +23,11 @@
 
 @import "1-settings/colors";
 
+@import "2-tools/media";
+@import "2-tools/position";
+@import "2-tools/triangle";
+@import "2-tools/hamburguer";
+
 @import "~/sonatacss/layers/_tools";
 
 @import "~/sonatacss/layers/_generic";
@@ -36,3 +41,6 @@
 @import "~/sonatacss/layers/_utilities";
 
 @import "7-components/inicio";
+@import "7-components/admin";
+@import "7-components/user-bar-admin";
+@import "7-components/dashboard-menu-admin";
