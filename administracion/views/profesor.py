@@ -5,4 +5,6 @@ from django.shortcuts import render
 def index(request):
     if request.method == 'GET':
         print('holi')
-        return render(request, 'admin/profesor/index.html')
+        site = request.scheme+'://'+request.get_host()
+
+        return render(request, 'admin/profesor/index.html', {'SITE_URL':site})

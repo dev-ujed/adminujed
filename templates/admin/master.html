@@ -19,8 +19,12 @@
       data-email="{{ request.user.email }}"
     >
     <div id="dashboard">
+      <admin>
         {% block content %}
+
         {% endblock %}
+      </admin>
+        
     </div>
   </body>
 </html>

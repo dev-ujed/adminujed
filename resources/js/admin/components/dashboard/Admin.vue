@@ -4,7 +4,9 @@
         <div class="admin-main">
             <Sidebar :showSidebar="showSidebar" @close-sidebar="showSidebar = false" />
             <div class="admin-main__content">
-                <Profesores />
+                <slot>
+                    
+                </slot>
             </div>
         </div>
     </div>
@@ -13,7 +15,7 @@
 
     import Navbar from './Navbar.vue';
     import Sidebar from './Sidebar.vue';
-    import Profesores from '../Profesores.vue';
+    import Profesores from '../profesor/Profesores.vue';
 
     export default {
 		name: 'admin',

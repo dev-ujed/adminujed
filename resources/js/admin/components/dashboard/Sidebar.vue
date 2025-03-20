@@ -11,9 +11,10 @@
                 <li v-for="(item, index) in menuItems" 
                     :key="index"
                     :class="['dashboard-menu-admin__section', { 'dashboard-menu-admin__section--active': activeIndex === index }]">
-                    <button type="button" class="dashboard-menu-admin__section-btn" @click="setActive(index)">
+                    <button  type="button" class="dashboard-menu-admin__section-btn" @click="setActive(index, item.url)">
                         <img class="dashboard-menu-admin__title" :src="item.icon" :alt="item.text">
                         <span>{{ item.text }}</span>
+                        
                     </button>
                 </li>
             </ul>
@@ -29,15 +30,28 @@
             return {
                 activeIndex: 0,
                 menuItems: [
-                    { text: 'Profesores', icon: '/static/img/Icon users-outline_red.png' },
-                    { text: 'Unidades', icon: '/static/img/Icon_red.png' }
-                ]
+                    { text: 'Profesores', icon: '/static/img/Icon users-outline_red.png', url:'/admi/profesor/' },
+                    { text: 'Unidades', icon: '/static/img/Icon_red.png', url:'/admi/unidad/' }
+                ],
+                siteUrl : ''
             };
         },
 
         methods: {
-            setActive(index) {
-                this.activeIndex = index;
+            setActive(index,  url) {
+                console.log(this.siteUrl+url)
+                window.location.href = this.siteUrl+url
+            }
+        },
+        mounted(){
+            this.siteUrl = document.body.getAttribute('data-root')
+            const path = window.location.pathname;
+
+            if (path.includes('admi/profesor')) {
+                this.activeIndex = 0;
+            }
+            else{
+                this.activeIndex = 1;
             }
         }
     }
