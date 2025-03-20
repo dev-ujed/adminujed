@@ -11,6 +11,13 @@
     {% vite 'resources/css/main.scss' 'resources/js/main.js' %}
   </head>
   <body data-root="{{SITE_URL}}">
+    <div id="user" 
+      data-url="{% url 'custom_logout' %}"
+      data-name="{{ request.user.name }}"
+      data-lastname="{{ request.user.lastname }}"
+      data-user_id="{{ request.user.id }}"
+      data-email="{{ request.user.email }}"
+    >
     <div id="dashboard">
         {% block content %}
         {% endblock %}

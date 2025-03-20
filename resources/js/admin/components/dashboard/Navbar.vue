@@ -10,19 +10,16 @@
                 <div class="user-bar-admin__avatar-container">
                     <img class="user-bar-admin__avatar" src="/static/img/icono-user.png" alt="Icono user">
                 </div>
-                <p class="user-bar-admin__user-name">Litzy Yulissa Nevarez García</p>
+                <p class="user-bar-admin__user-name">{{name}} {{ lastname }}</p>
                 <ul class="user-bar-admin__profile-menu">
                     <li class="user-bar-admin__profile-menu-item user--info center-text">
                         <div class="user-bar-admin__menu-avatar-container">
                             <img class="user-bar-admin__menu-avatar" src="/static/img/icono-user.png" alt="Icono user">
-                            <p class="mt-2 mb-3">Litzy Yulissa Nevarez García</p>
+                            <p class="mt-2 mb-3">{{name}} {{ lastname }}</p>
                         </div>
                     </li>
                     <li class="user-bar-admin__profile-menu-item">
-                        <a href="" class="user-bar-admin__profile-menu-link">Modificar perfil</a>
-                    </li>
-                    <li class="user-bar-admin__profile-menu-item">
-                        <a href="" class="user-bar-admin__profile-menu-link">
+                        <a :href="logout" class="user-bar-admin__profile-menu-link">
                             Cerrar sesión
                         </a>
                     </li>
@@ -31,8 +28,25 @@
         </section>
     </div>
 </template>
+
 <script>
-    export default {
+	export default {
 		name: 'navbar',
-    }
+		data() {
+			return {
+                logout: '',
+                name: '',
+                lastname: '',
+			};
+		},
+		methods: {
+			
+		},
+        mounted() {
+            const useDiv = document.getElementById('user');
+            this.logout = useDiv.dataset.url;
+            this.name = useDiv.dataset.name;
+            this.lastname = useDiv.dataset.lastname;
+        },
+	};
 </script>
