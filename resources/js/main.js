@@ -1,6 +1,7 @@
 import { createApp, nextTick } from "vue"; // Usa createApp en lugar de Vue
 import Inicio from "./public/components/Inicio.vue";
 import Admin from "./admin/components/dashboard/Admin.vue";
+import Profesores from "./admin/components/profesor/Profesores.vue";
 import axios from 'axios'; 
 
 window.axios = axios;
@@ -142,4 +143,5 @@ createApp({
 })
 .component("inicio", Inicio)
 .component("admin", Admin)
+.component("profesor", Profesores)
 .mount("#dashboard");
