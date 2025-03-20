@@ -1,0 +1,246 @@
+.pagination {
+    display: none;
+    justify-content: center;
+    list-style-type: none;
+    margin-left: 0;
+    margin-top: 90px;
+}
+
+.pagination-container {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.pagination-item {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    border-radius: 4px;
+    color: $color-gray-80;
+    display: flex;
+    height: 34px;
+    justify-content: center;
+    margin-right: 4px;
+    min-width: 34px;
+    padding-left: 2px;
+    padding-right: 2px;
+
+    &:focus,
+    &:hover,
+    &:active {
+        background-color: $color-gray-20;
+        color: $color-gray-80;
+        text-decoration: none;
+    }
+
+    :root &--selected {
+        background-color: $color-primary;
+        color: #fff;
+        cursor: default;
+    }
+
+    :root:root &--text {
+        color: $color-gray-40;
+        margin: 0;
+        width: 1.5em;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: transparent;
+            color: $color-gray-40;
+        }
+    }
+}
+
+.pagination-next {
+    margin-left: $spacer * 2.5;
+}
+
+.pagination-previous {
+    margin-right: $spacer * 2.5;
+}
+
+.pagination-next,
+.pagination-previous {
+    background-color: transparent;
+    border: 0;
+    color: $color-gray-80;
+    height: 100%;
+    padding: 0;
+    text-decoration: none;
+
+    &:focus,
+    &:hover,
+    &:active {
+        color: $color-primary;
+        text-decoration: none;
+    }
+
+    &__icon {
+        font-size: 20px;
+    }
+
+    :root &--disabled {
+        color: $color-gray-50;
+        cursor: default;
+    }
+}
+
+/*
+================================================================================
+Dashboard pagination
+================================================================================
+*/
+
+.pagination--dashboard {
+    align-items: center;
+    display: none;
+    justify-content: center;
+    margin-top: 60px;
+
+    & .pagination-item {
+        color: $color-gray-60;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: $color-gray-20;
+            color: $color-gray-80;
+            text-decoration: none;
+        }
+
+        :root &--selected {
+            background-color: $color-primary;
+            color: #fff;
+            cursor: default;
+            font-weight: bold;
+        }
+
+        .dashboard--admin &--selected {
+            background-color: $color-db;
+        }
+
+        & .pagination-item__link {
+            color: $color-gray-60;
+            text-decoration: none;
+        }
+    }
+
+    .pagination-next {
+        margin-left: $spacer * 0.25;
+    }
+
+    .pagination-previous {
+        margin-right: $spacer * 0.25;
+    }
+
+    & .pagination-next,
+    & .pagination-previous {
+        align-items: center;
+        border-radius: 4px;
+        color: $color-gray-60;
+        display: flex;
+        height: 34px;
+        justify-content: center;
+        margin-right: 4px;
+        width: 34px;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: $color-gray-20;
+            color: $color-gray-80;
+            text-decoration: none;
+        }
+
+        :root &--disabled {
+            background-color: transparent;
+            color: $color-gray-50;
+            cursor: default;
+        }
+
+        & .pagination-previous__link {
+            color: $color-gray-60;
+            text-decoration: none;
+        }
+
+        & .pagination-next__link {
+            color: $color-gray-60;
+            text-decoration: none;
+        }
+    }
+
+    .pagination-next__link svg {
+        width: 16px;
+    }
+
+    .pagination-previous__link svg {
+        width: 16px;
+    }
+
+    .pagination-next svg,
+    .pagination-previous svg {
+        stroke-width: 1.5;
+        width: 1.3em;
+    }
+}
+
+
+/*
+================================================================================
+Responsive pagination
+================================================================================
+*/
+
+.pagination--responsive {
+    display: flex;
+    justify-content: space-between;
+
+    & .pagination-pages {
+        align-items: flex-end;
+        display: inline-flex;
+    }
+
+    & .pagination-next,
+    .pagination-previous {
+        margin: 0;
+    }
+
+    & .pagination-next__icon,
+    .pagination-previous__icon {
+        font-size: 25px;
+    }
+
+    & .form-field {
+        border: 0;
+        font-size: 16px;
+        height: 24px;
+        padding: 0;
+    }
+
+    &__dashboard {
+        color: $color-gray-60 !important;
+        justify-content: center;
+        margin-top: 30px;
+
+        & .pagination-next {
+            margin-left: 20px;
+        }
+
+        & .pagination-previous {
+            margin-right: 20px;
+        }
+
+        & .pagination-pages {
+            align-items: baseline;
+        }
+
+        & .form-field {
+            border: 1px solid #d6dadd;
+            font-size: 16px;
+            height: 34px;
+            padding: 5px 10px;
+        }
+    }
+}

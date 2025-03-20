@@ -1,0 +1,67 @@
+/*
+================================================================================
+Dashboard panel
+================================================================================
+*/
+
+.db-panel {
+    --db-panel-padding-x: 15px;
+    background-color: #fff;
+    border-radius: $radius;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: $gutter;
+    overflow: auto;
+    padding: 30px var(--db-panel-padding-x);
+    position: relative;
+
+    &--wide {
+        --db-panel-padding-x: 30px;
+    }
+}
+
+.db-panel__hr {
+    margin: 1.5rem 0 1.5rem calc(var(--db-panel-padding-x) * -1);
+    width: calc(100% + (var(--db-panel-padding-x) * 2));
+}
+
+
+/* Heading
+============================================================================= */
+
+.db-panel__title {
+    border-bottom: 1px solid $color-gray-30;
+    color: $color-db-panel-title;
+    font-size: rem(14);
+    font-weight: $font-weight-bold;
+    line-height: 1.2;
+    margin: -30px 0 30px calc(var(--db-panel-padding-x) * -1);
+    padding: 1.3em var(--db-panel-padding-x);
+    text-align: left;
+    width: calc(100% + (var(--db-panel-padding-x) * 2));
+}
+
+.db-panel__title-link {
+    display: inline-block;
+    font-weight: 400;
+    margin-left: 0.3em;
+    text-transform: none;
+}
+
+
+/* Order by
+============================================================================= */
+
+.db-panel__order-row {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.db-panel__order-col {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    max-width: 400px;
+    width: 100%;
+}

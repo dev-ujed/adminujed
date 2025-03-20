@@ -4,7 +4,7 @@
         <div class="admin-main">
             <Sidebar :showSidebar="showSidebar" @close-sidebar="showSidebar = false" />
             <div class="admin-main__content">
-                <h1>contenido main</h1>
+                <Profesores />
             </div>
         </div>
     </div>
@@ -13,13 +13,15 @@
 
     import Navbar from './Navbar.vue';
     import Sidebar from './Sidebar.vue';
+    import Profesores from '../Profesores.vue';
 
     export default {
 		name: 'admin',
 
         components: {
             Navbar,
-            Sidebar
+            Sidebar,
+            Profesores
         },
 
         data() {
