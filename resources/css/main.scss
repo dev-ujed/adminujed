@@ -22,11 +22,15 @@
 @import "~/sonatacss/layers/_settings";
 
 @import "1-settings/colors";
+@import "1-settings/spacing";
 
-@import "2-tools/media";
 @import "2-tools/position";
 @import "2-tools/triangle";
 @import "2-tools/hamburguer";
+@import "2-tools/fluid";
+@import "2-tools/media";
+
+@import "5-objects/container";
 
 @import "~/sonatacss/layers/_tools";
 
@@ -44,3 +48,10 @@
 @import "7-components/admin";
 @import "7-components/user-bar-admin";
 @import "7-components/dashboard-menu-admin";
+@import "7-components/dashboard-heading";
+@import "7-components/section";
+@import "7-components/buttons";
+@import "7-components/db-search-field";
+@import "7-components/dashboard-panel";
+@import "7-components/table-index";
+@import "7-components/pagination";

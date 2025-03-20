@@ -1,0 +1,25 @@
+/*
+================================================================================
+Dashboard search field
+================================================================================
+*/
+
+.db-search {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.db-search__btn {
+    border-radius: 0 $radius $radius 0;
+    height: 3rem;
+    padding: 0;
+    width: 3.2rem;
+}
+
+.db-search__input {
+    border-radius: $radius 0 0 $radius;
+    border-right: 0;
+    height: 3rem;
+}

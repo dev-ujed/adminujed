@@ -1,0 +1,23 @@
+/*
+================================================================================
+Dashboard heading
+================================================================================
+*/
+
+.db-heading__title {
+    font-size: 24px;
+    padding: 40px 0;
+}
+
+.db-heading--admin {
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(#000, 0.16);
+}
+
+.db-heading--admin__title {
+    color: $color-gray-90;
+    font-size: rem(24);
+    font-weight: normal;
+    padding: 15px;
+
+}
