@@ -28,12 +28,6 @@ def custom_login(request):
             return JsonResponse({'message': 'Login exitoso', 'user': customUserSerializer(user).data}, status=200)
         else:
             return JsonResponse({'error': 'Correo o contraseña incorrectos.'}, status=401)
-        
-""" def custom_logout(request):
-    if request.method == 'POST':
-        logout(request)
-        return JsonResponse({'message': 'Logout exitoso'}, status=200)
-    return JsonResponse({'error': 'Método no permitido'}, status=405) """
 
 def custom_logout(request):
     logout(request)
