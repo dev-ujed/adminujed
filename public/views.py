@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .models import *
 from .serializers import *
 import json
@@ -29,11 +29,15 @@ def custom_login(request):
         else:
             return JsonResponse({'error': 'Correo o contraseña incorrectos.'}, status=401)
         
-def home(request):
-	if request.method == 'GET':
-		if request.user.is_authenticated:
-			print('logueado')
-		return render(request, 'public/home.html')
+""" def custom_logout(request):
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'message': 'Logout exitoso'}, status=200)
+    return JsonResponse({'error': 'Método no permitido'}, status=405) """
+
+def custom_logout(request):
+    logout(request)
+    return redirect('/')
 
 def create_user(request):
 	if request.method == 'POST':
