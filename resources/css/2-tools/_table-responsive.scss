@@ -1,0 +1,106 @@
+// =============================================================================
+// Table responsive
+// =============================================================================
+
+
+// Adapt a table to small screens by displaying its cells as blocks.
+//
+// Each cell in the body needs a `data-label` attribute with
+// the label/title, e.g.:
+//
+// <td data-label="Name:">John</td>
+//
+// Credit: https://css-tricks.com/responsive-data-tables/
+//
+// 1. Necessary for IE.
+//
+// @param {number} $padding-x [0.8em] - Horizontal padding for cells.
+// @param {number} $padding-y [0.6em] - Vertical padding for cells.
+
+@mixin table-responsive($padding-x: 0.8em, $padding-y: 0.6em) {
+    @include table-striped;
+
+    display: inline-block; // 1 //
+
+    tbody {
+        display: block; // 1 //
+    }
+
+    td, th {
+        display: flex;
+    }
+
+    td {
+        //border-bottom: 1px solid rgba($color-border, 0.5);
+        padding: $padding-y $padding-x;
+
+        /* &:first-child {
+            color: $color-gray-80;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        &:first-child::before {
+            margin: 0px;
+            width: 0px;
+        } */
+
+        &::before {
+            color: $color-gray-70;
+            content: attr(data-label);
+            font-size: 15px;
+            flex-shrink: 0;
+            margin-right: $padding-x;
+            width: calc(45% - #{$padding-x});
+        }
+
+        &.table-resource__main {
+            font-weight: 600;
+            font-size: 18px;
+            &::before {
+                margin: 0px;
+                width: 0px;
+            }
+        }
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    td.td-lineal {
+        color: $color-gray-70;
+        border-bottom: 0px;
+        font-size: 14px;
+        font-weight: 400;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        
+        &::before {
+            margin-right: 0;
+            width:0;
+        }
+    }
+
+    td.td-lineal::before {
+        color: $color-gray-70;
+        font-size: 14px;
+        font-weight: 400;
+        margin-right: 0;
+        width:0;
+    }
+
+    thead {
+        @include visually-hidden;
+    }
+
+    tr {
+        display: block;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+
+        &:first-child {
+            border-top: 1px solid rgba($color-border, 0.5);
+        }
+    }
+}

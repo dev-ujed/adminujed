@@ -86,7 +86,12 @@ $button-padding-y: 0.75em !default;
 .btn--db-index {
     display: inline-block;
     font-size: rem(13);
-    padding: 0.5em 1.5em;
+    padding: 0.8em 1.6em;
+    border-radius: 6px;
+
+    &:hover{
+        color: $color-white;
+    }
 
     @include button((
         background-color: $color-db,

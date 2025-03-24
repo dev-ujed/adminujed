@@ -29,6 +29,8 @@
 @import "2-tools/hamburguer";
 @import "2-tools/fluid";
 @import "2-tools/media";
+@import "2-tools/functions";
+@import "2-tools/table-responsive";
 
 @import "5-objects/container";
 
@@ -46,6 +48,7 @@
 
 @import "7-components/inicio";
 @import "7-components/admin";
+@import "7-components/profesores";
 @import "7-components/user-bar-admin";
 @import "7-components/dashboard-menu-admin";
 @import "7-components/dashboard-heading";
@@ -55,3 +58,6 @@
 @import "7-components/dashboard-panel";
 @import "7-components/table-index";
 @import "7-components/pagination";
+@import "7-components/form-field";
+
+

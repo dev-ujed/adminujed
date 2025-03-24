@@ -1,72 +1,23 @@
-.pagination {
+.pagination{
     display: none;
-    justify-content: center;
-    list-style-type: none;
-    margin-left: 0;
-    margin-top: 90px;
 }
 
-.pagination-container {
-    margin-bottom: 30px;
-    width: 100%;
-}
-
-.pagination-item {
-    align-items: center;
-    background-color: transparent;
-    border: 0;
-    border-radius: 4px;
-    color: $color-gray-80;
+.pagination--responsive{
     display: flex;
-    height: 34px;
-    justify-content: center;
-    margin-right: 4px;
-    min-width: 34px;
-    padding-left: 2px;
-    padding-right: 2px;
-
-    &:focus,
-    &:hover,
-    &:active {
-        background-color: $color-gray-20;
-        color: $color-gray-80;
-        text-decoration: none;
-    }
-
-    :root &--selected {
-        background-color: $color-primary;
-        color: #fff;
-        cursor: default;
-    }
-
-    :root:root &--text {
-        color: $color-gray-40;
-        margin: 0;
-        width: 1.5em;
-
-        &:focus,
-        &:hover,
-        &:active {
-            background-color: transparent;
-            color: $color-gray-40;
-        }
-    }
-}
-
-.pagination-next {
-    margin-left: $spacer * 2.5;
-}
-
-.pagination-previous {
-    margin-right: $spacer * 2.5;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .pagination-next,
 .pagination-previous {
+    align-items: center;
+    display: flex;
     background-color: transparent;
     border: 0;
-    color: $color-gray-80;
+    color: $color-primary;
     height: 100%;
+    justify-content: center;
     padding: 0;
     text-decoration: none;
 
@@ -79,168 +30,120 @@
 
     &__icon {
         font-size: 20px;
+        margin-left: 0.8rem
     }
 
-    :root &--disabled {
-        color: $color-gray-50;
-        cursor: default;
+    &__text{
+        color: $color-black;
     }
 }
 
-/*
-================================================================================
-Dashboard pagination
-================================================================================
-*/
+.pagination-next {
+    margin-left: $spacer * 2;
+}
 
-.pagination--dashboard {
-    align-items: center;
-    display: none;
-    justify-content: center;
-    margin-top: 60px;
+.pagination-previous {
+    margin-right: $spacer * 0.25;
+}
 
-    & .pagination-item {
-        color: $color-gray-60;
+.form-field-p{
+    width: 64px;
+    height: 36px;
+    margin-right: 0.5rem;
+}
 
-        &:focus,
-        &:hover,
-        &:active {
-            background-color: $color-gray-20;
-            color: $color-gray-80;
-            text-decoration: none;
-        }
-
-        :root &--selected {
-            background-color: $color-primary;
-            color: #fff;
-            cursor: default;
-            font-weight: bold;
-        }
-
-        .dashboard--admin &--selected {
-            background-color: $color-db;
-        }
-
-        & .pagination-item__link {
-            color: $color-gray-60;
-            text-decoration: none;
-        }
+@media (min-width: 768px){
+    .pagination--responsive{
+        display: none;
     }
 
-    .pagination-next {
-        margin-left: $spacer * 0.25;
-    }
-
-    .pagination-previous {
-        margin-right: $spacer * 0.25;
-    }
-
-    & .pagination-next,
-    & .pagination-previous {
-        align-items: center;
-        border-radius: 4px;
-        color: $color-gray-60;
+    .pagination{
         display: flex;
-        height: 34px;
+        align-items: center;
         justify-content: center;
-        margin-right: 4px;
-        width: 34px;
+        margin-top: 60px;
+        list-style: none;
 
-        &:focus,
-        &:hover,
-        &:active {
-            background-color: $color-gray-20;
-            color: $color-gray-80;
-            text-decoration: none;
-        }
-
-        :root &--disabled {
+        & .pagination-item {
+            color: $color-gray-60;
             background-color: transparent;
-            color: $color-gray-50;
-            cursor: default;
+            border: none;
+            height: 36px;
+            margin-right: 4px;
+            width: 36px;
+    
+            &:focus,
+            &:hover,
+            &:active {
+                color: $color-gray-80;
+                text-decoration: none;
+            }
+    
+            :root &--selected {
+                background-color: $color-primary;
+                color: #fff;
+                cursor: default;
+                font-weight: bold;
+            }
+    
+            .dashboard--admin &--selected {
+                background-color: $color-db;
+            }
+    
+            & .pagination-item__link {
+                color: $color-gray-60;
+                text-decoration: none;
+            }
         }
-
-        & .pagination-previous__link {
-            color: $color-gray-60;
-            text-decoration: none;
-        }
-
-        & .pagination-next__link {
-            color: $color-gray-60;
-            text-decoration: none;
-        }
-    }
-
-    .pagination-next__link svg {
-        width: 16px;
-    }
-
-    .pagination-previous__link svg {
-        width: 16px;
-    }
-
-    .pagination-next svg,
-    .pagination-previous svg {
-        stroke-width: 1.5;
-        width: 1.3em;
-    }
-}
-
-
-/*
-================================================================================
-Responsive pagination
-================================================================================
-*/
-
-.pagination--responsive {
-    display: flex;
-    justify-content: space-between;
-
-    & .pagination-pages {
-        align-items: flex-end;
-        display: inline-flex;
-    }
-
-    & .pagination-next,
-    .pagination-previous {
-        margin: 0;
-    }
-
-    & .pagination-next__icon,
-    .pagination-previous__icon {
-        font-size: 25px;
-    }
-
-    & .form-field {
-        border: 0;
-        font-size: 16px;
-        height: 24px;
-        padding: 0;
-    }
-
-    &__dashboard {
-        color: $color-gray-60 !important;
-        justify-content: center;
-        margin-top: 30px;
-
-        & .pagination-next {
-            margin-left: 20px;
-        }
-
+    
+    
+        & .pagination-next,
         & .pagination-previous {
-            margin-right: 20px;
-        }
+            align-items: center;
+            border-radius: 4px;
+            color: $color-primary;
+            display: flex;
+            justify-content: center;
+            margin-right: 4px;
+    
+            &:focus,
+            &:hover,
+            &:active {
+                background-color: $color-gray-20;
+                color: $color-gray-80;
+                text-decoration: none;
+            }
+    
+            & .pagination-previous__link {
+                color: $color-gray-60;
+                text-decoration: none;
+            }
+    
+            & .pagination-next__link {
+                color: $color-gray-60;
+                text-decoration: none;
+            }
 
-        & .pagination-pages {
-            align-items: baseline;
+            .pagination-next__text{
+                color: $color-black;
+                font-size: 16px;
+                margin-right: 5px;
+            }
         }
-
-        & .form-field {
-            border: 1px solid #d6dadd;
-            font-size: 16px;
-            height: 34px;
-            padding: 5px 10px;
+    
+        .pagination-next__link svg {
+            width: 16px;
+        }
+    
+        .pagination-previous__link svg {
+            width: 16px;
+        }
+    
+        .pagination-next svg,
+        .pagination-previous svg {
+            stroke-width: 1.5;
+            width: 1.3em;
         }
     }
+
 }
