@@ -28,9 +28,24 @@
     pointer-events: none;
 }
 
+.db-panel-p{
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: $gutter;
+    overflow: auto;
+    padding: 30px var(--db-panel-padding-x);
+    position: relative;
+}
+
+.list-container{
+    width: 100%;
+}
+
 .record{
-    margin: 10px 0;
     padding: 1rem;
+    border-bottom: 0.5px solid #ddd;
 }
 
 .record__title{
@@ -52,7 +67,7 @@
 .record__contaier{
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 30px;
 }
 
 .title{
@@ -72,11 +87,11 @@
 }
 
 .record:nth-child(odd) {
-    background-color: $color-gray;
+    background-color: white;
 }
 
 .record:nth-child(even) {
-    background-color: white; 
+    background-color: $color-gray;
 }
 
 .unidad-academica {
