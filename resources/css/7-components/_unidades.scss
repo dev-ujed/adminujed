@@ -1,0 +1,49 @@
+.card-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.card__title{
+    font-size: 28px;
+    font-weight: 700;
+    color: $color-primary;
+}
+
+.card__body{
+    margin-top: 5px;
+    line-height: 0.5;
+}
+
+.card__title-large{
+    font-size: 18px;
+    font-weight: 400;
+    color: #282C31;
+}
+
+.card__sede{
+    font-size: 14px;
+    font-weight: 400;
+    color: #82878C;
+}
+
+@media (min-width: 768px) and (max-width: 1080px){
+    .card-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card__title-large{
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1080px){
+    .card-container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .card__title-large{
+        font-size: 16px;
+    }
+}
