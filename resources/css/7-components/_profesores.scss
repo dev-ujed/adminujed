@@ -1,0 +1,119 @@
+.table-container{
+    display: none;
+}
+
+.db-search-form{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 100%;
+    margin: 0 auto;
+}
+
+.search-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.search-input {
+    padding-right: 30px; 
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.record{
+    margin: 10px 0;
+    padding: 1rem;
+}
+
+.record__title{
+    color: $color-gray-50;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.record__name{
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+
+    span{
+        color: $color-primary;
+    }
+}
+
+.record__contaier{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.title{
+    color: #82878C;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.subtitle{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.record__container--sub{
+    display: flex;
+    flex-direction: column;
+}
+
+.record:nth-child(odd) {
+    background-color: $color-gray;
+}
+
+.record:nth-child(even) {
+    background-color: white; 
+}
+
+.unidad-academica {
+    page-break-before: always; /* Salto de página antes de cada unidad académica */
+}
+
+@media (min-width: 768px){
+    .list-container{
+        display: none;
+    }
+
+    .table-container{
+        display: block;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    thead{
+        border-bottom: 2px solid #000;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    .search-wrapper{
+        width: 40%;
+    }
+    
+
+}
