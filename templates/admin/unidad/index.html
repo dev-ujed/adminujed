@@ -1,6 +1,43 @@
 {% extends 'admin/master.html' %}
 {% load static %}
+ 
+<body class="dashboard dashboard--admin" data-root="{{ SITE_URL }}">
+    <div id="dashboard" v-cloak>
+        <main
+            id="main"
+            class="main main--admin"
+            :class="{'main--has-menu-admin': menuIsVisible}"
+            role="main"
+        >
+            {% block content %}
+                <unidades></unidades>
+            {% endblock %}
+        </main>
 
-{% block content %}
+        <menu-overlay></menu-overlay>
+        <site-overlay></site-overlay>
+        <toasts :initial="{{ toasts|default:'[]' }}"></toasts>
+    </div>
 
-{% endblock %}
+    <!-- Scripts -->
+    <script src="{% static 'js/vendor.js' %}{{js_vendor}}"></script>
+    <script src="{% static 'js/admin.js' %}{{js_admin}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- data table -->
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
+    <!-- <script>
+        $(document).ready(function () {
+            $('.myTable').DataTable({
+                paging: true,
+                searching: true,
+                
+            });
+        });
+    </script> -->
+
+    {% block scripts %}
+    {% endblock %}
+
+</body>
