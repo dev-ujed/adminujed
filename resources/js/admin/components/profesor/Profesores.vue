@@ -15,7 +15,7 @@
             
             <p class="">Se encontraron 37 registros para “Fernand”.</p>
 
-            <div class="db-panel">
+            <div class="db-panel-p">
                 <div class="table-container">
                     <table>
                         <thead>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="list-container">
                     <div class="record">
-                        <p class="record__name"><strong>Abreu Fernández Carolina <span>&gt;</span></strong></p>
+                        <p class="record__name"><strong>Abreu Fernández Carolina <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
                         <div class="record__contaier">
                             <div class="record__container--sub title">
                                 <p>Matrícula </p>
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="record">
-                        <p class="record__name"><strong>Abreu Fernández Carolina <span>&gt;</span></strong></p>
+                        <p class="record__name"><strong>Abreu Fernández Carolina <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
                         <div class="record__contaier">
                             <div class="record__container--sub title">
                                 <p>Matrícula </p>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="record">
-                        <p class="record__name"><strong>Abreu Fernández Carolina <span>&gt;</span></strong></p>
+                        <p class="record__name"><strong>Abreu Fernández Carolina <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
                         <div class="record__contaier">
                             <div class="record__container--sub title">
                                 <p>Matrícula </p>
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <div class="record">
-                        <p class="record__name"><strong>Abreu Fernández Carolina <span>&gt;</span></strong></p>
+                        <p class="record__name"><strong>Abreu Fernández Carolina <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
                         <div class="record__contaier">
                             <div class="record__container--sub title">
                                 <p>Matrícula </p>
@@ -139,7 +139,7 @@
                         </li>
                     </ul>
                     <div class="pagination--responsive">
-                        <button class="pagination-previous pagination-previous--disabled"><span class="pagination-previous__icon mr-1"><</span></button>
+                        <button class="pagination-previous pagination-previous--disabled"><span class="pagination-previous__icon mr-1"><img src="/static/img/icon-prev.png" alt="prev"></span></button>
                         <div class="pagination-pages">
                             <select name="pagination" id="pagination" class="form-field-p">
                                 <option value="1">1</option>
@@ -148,7 +148,7 @@
                             </select>
                             <span>de 14</span>
                         </div>
-                        <button type="button" rel="next" class="pagination-next"><span class="pagination-next__icon">></span></button>
+                        <button type="button" rel="next" class="pagination-next"><span class="pagination-next__icon"><img src="/static/img/icon-next.png" alt="next"></span></button>
                     </div>
                 </nav>
             </div>
