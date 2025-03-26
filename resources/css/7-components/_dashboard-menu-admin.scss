@@ -14,10 +14,11 @@
     top: 0;
     left: -100%;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #FFF;
     transition: left 0.3s ease;
     padding: 1rem;
+    z-index: 999;
 }
 
 .dashboard-menu-admin__img{
