@@ -1,0 +1,62 @@
+.programs__cards{
+    cursor: pointer;
+}
+
+label{
+    background-color: #FFEC9A;
+    font-size: 10px;
+    font-weight: 400;
+    color: #6C3500;
+    max-width: 43px;
+    height: 18px;
+    border: 4px;
+    text-align: center;
+}
+
+.programs__title{
+    text-align: center;
+    color: $color-primary;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.programs__titulos--title, .cards__carrera{
+    font-size: 18px;
+    font-weight: 700;
+    color: #282C31;
+}
+
+.btn-card{
+    display: none;
+}
+
+.cards__anio{
+    font-size: 14px;
+    font-weight: 400;
+    color: #74777A;
+}
+
+@media (min-width: 768px){
+    .programs__cards{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cards__carrera, .cards__anio{
+        flex: 1;
+    }
+
+    .btn-card{
+        display: block;
+    }
+    
+
+    .programs__cards{
+        cursor: default;
+    }
+
+    span{
+        display: none;
+    }
+}
