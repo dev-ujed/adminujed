@@ -12,14 +12,14 @@
             </form>
         </div>
         <div class="container container--admin card-container">
-            <div class="db-panel card">
+            <div class="db-panel card" @click="detallesUndiad(1)">
                 <div class="card__title">CCH</div>
                 <div class="card__body">
                     <p class="card__title-large">Colegio de Ciencias y Humanidades</p>
                     <p class="card__sede">Sede Durango</p>
                 </div>
             </div>
-            <div class="db-panel card">
+            <div class="db-panel card" @click="detallesUndiad(2)">
                 <div class="card__title">ECT</div>
                 <div class="card__body">
                     <p class="card__title-large">Escuela de Ciencias y Tecnologías</p>
@@ -40,7 +40,7 @@
                     <p class="card__sede">Sede Gómez Palacio</p>
                 </div>
             </div>
-            <div class="db-panel card">
+            <div class="db-panel card" @click="detallesUndiad(3)">
                 <div class="card__title">FCQ</div>
                 <div class="card__body">
                     <p class="card__title-large">Facultad de Ciencias Químicas</p>
@@ -68,5 +68,11 @@
 <script>
     export default {
 		name: 'unidades',
+
+        methods:{
+            detallesUndiad(id){
+                window.location.href = `${id}/`;
+            }
+        }
     }
 </script>
