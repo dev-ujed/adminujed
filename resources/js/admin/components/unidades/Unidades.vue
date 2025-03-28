@@ -12,53 +12,11 @@
             </form>
         </div>
         <div class="container container--admin card-container">
-            <div class="db-panel card" @click="detallesUndiad(1)">
-                <div class="card__title">CCH</div>
+            <div class="db-panel card" v-for="escuela in escuelas"  :key="escuela.cve_escuela" @click="detallesUnidad(escuela.cve_escuela)">
+                <div class="card__title">{{ escuela.desc_corto}}</div>
                 <div class="card__body">
-                    <p class="card__title-large">Colegio de Ciencias y Humanidades</p>
-                    <p class="card__sede">Sede Durango</p>
-                </div>
-            </div>
-            <div class="db-panel card" @click="detallesUndiad(2)">
-                <div class="card__title">ECT</div>
-                <div class="card__body">
-                    <p class="card__title-large">Escuela de Ciencias y Tecnologías</p>
-                    <p class="card__sede">Sede Durango</p>
-                </div>
-            </div>
-            <div class="db-panel card">
-                <div class="card__title">EPD</div>
-                <div class="card__body">
-                    <p class="card__title-large">Escuela Preparatoria Diurna</p>
-                    <p class="card__sede">Sede Durango</p>
-                </div>
-            </div>
-            <div class="db-panel card">
-                <div class="card__title">FAZ</div>
-                <div class="card__body">
-                    <p class="card__title-large">Facultad de Agricultura y Zootecnia</p>
-                    <p class="card__sede">Sede Gómez Palacio</p>
-                </div>
-            </div>
-            <div class="db-panel card" @click="detallesUndiad(3)">
-                <div class="card__title">FCQ</div>
-                <div class="card__body">
-                    <p class="card__title-large">Facultad de Ciencias Químicas</p>
-                    <p class="card__sede">Sede Durango</p>
-                </div>
-            </div>
-            <div class="db-panel card">
-                <div class="card__title">FCQ GP</div>
-                <div class="card__body">
-                    <p class="card__title-large">Facultad de Ciencias Químicas (G.P.)</p>
-                    <p class="card__sede">sede Gómez Palacio</p>
-                </div>
-            </div>
-            <div class="db-panel card">
-                <div class="card__title">ICS</div>
-                <div class="card__body">
-                    <p class="card__title-large">Instituto de Ciencias Sociales</p>
-                    <p class="card__sede">Sede Durango</p>
+                    <p class="card__title-large">{{ escuela.desc_completo }}</p>
+                    <p class="card__sede">Sede {{ escuela.ubicacion }}</p>
                 </div>
             </div>
         </div>
@@ -66,13 +24,36 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
 		name: 'unidades',
+        data(){
+            return{
+                escuelas: [],
+            };
+        },
 
         methods:{
-            detallesUndiad(id){
-                window.location.href = `${id}/`;
-            }
+            detallesUnidad(id){
+                const nom_escuela = this.escuelas.find(esc => esc.cve_escuela === id);
+                window.location.href = `/admi/carreras/${id}/`;
+                localStorage.setItem('escuela_nombre', nom_escuela.desc_completo);
+            },
+
+            getEscuelas(){
+                axios.get('unidades/')
+                .then(response => {
+                    this.escuelas = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+            },
+        },
+
+        mounted(){
+            this.getEscuelas();
         }
     }
 </script>

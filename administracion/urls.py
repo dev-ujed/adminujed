@@ -4,6 +4,7 @@ from  administracion.views import views, unidad, profesor
 urlpatterns = [
 	path('', views.home, name='home' ),
 	path('unidad/', unidad.index, name='unidad' ),
-	path('unidad/<int:id>/', unidad.detalles_unidad, name='detalles_unidad'),
+	path('unidad/unidades/', unidad.unidades, name='unidades'),
+	path('carreras/<str:cve_escuela>/', unidad.carreras, name="carreras"),
 	path('profesor/', profesor.index, name='profesor' ),
 ]

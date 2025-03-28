@@ -1,27 +1,60 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+
+from administracion.models import Escuelas, Carreras, Plan_estudio
 
 # Create your views here.
 
 def index(request):
     if request.method == 'GET':
-        print('holi')
         site = request.scheme+'://'+request.get_host()
         
         return render(request, 'admin/unidad/index.html', {'SITE_URL':site})
 
-def detalles_unidad(request, id):
-    #todavía no tengo modelo de eso para sacar las unidades usare este de ejemplo
-    unidades = {
-        1: {"nombre_corto": "CCH", "nombre_largo": "Colegio de ciencias y humanidades", "sede":"Sede en Durango"},
-        2: {"nombre_corto": "ECT", "nombre_largo": "Escuela de Ciencias y Tecnologías", "sede":"Sede en Durango"},
-        3: {"nombre_corto": "FCQ", "nombre_largo": "Facultad de Ciencias Químicas", "sede":"Sede en Durango"},
-    }
 
-    unidad = unidades.get(id, None)
+def unidades(request):
+    #escuelas = Escuelas.objects.all().values("cve_escuela", "desc_completo", "desc_corto", "ubicacion")
+    #gte (mayor o igual) y lte (menor o igual)
 
-    if not unidad:
-        return "sin unidad"
+    licenciaturas = Carreras.objects.filter(cve_carrera__gte="140000", cve_carrera__lte="149999")
+    maestrias = Carreras.objects.filter(cve_carrera__gte="160000", cve_carrera__lte="169999")
+    doctorados = Carreras.objects.filter(cve_carrera__gte="170000", cve_carrera__lte="179999")
+    prepas = Carreras.objects.filter(cve_carrera__gte="12000201", cve_carrera__lte="12000206")
 
-    return render(request, 'admin/unidad/detalles.html', {'unidad': unidad})
-        
+    escuelas = Escuelas.objects.filter(
+        cve_escuela__in=licenciaturas.values('cve_escuela') |
+        maestrias.values('cve_escuela') |
+        doctorados.values('cve_escuela') |
+        prepas.values('cve_escuela')
+    ).values("cve_escuela", "desc_completo", "desc_corto", "ubicacion").distinct()
+
+    return JsonResponse(list(escuelas), safe=False)
+
+def carreras(request, cve_escuela):
+
+    carreras = Carreras.objects.filter(cve_escuela=cve_escuela).distinct()
+    planes = Plan_estudio.objects.filter(cve_carrera__in=carreras.values_list('cve_carrera', flat=True))
+
+    planes_dict = {}
+    for plan in planes:
+        if plan.cve_carrera not in planes_dict or plan.cve_ciclo > planes_dict[plan.cve_carrera]['cve_ciclo']:
+            planes_dict[plan.cve_carrera] = {'anio': plan.anio, 'cve_ciclo': plan.cve_ciclo}
+
+    #carreras_data = list(carreras.values('cve_carrera', 'desc_carrera', 'cve_escuela', 'activa'))
+    
+    carreras_data = []
+    for carrera in carreras:
+        anio = planes_dict.get(carrera.cve_carrera, {}).get('anio', None)
+        carreras_data.append({
+            'cve_carrera': carrera.cve_carrera,
+            'desc_carrera': carrera.desc_carrera,
+            'cve_escuela': str(carrera.cve_escuela),
+            'activa': carrera.activa,
+            'anio': anio
+        })
+
+    print(carreras_data)
+
+    #return JsonResponse(carreras_data, safe=False) 
+    return render(request, 'admin/unidad/detalles.html', {'carreras': carreras_data})
         

@@ -2,17 +2,6 @@
     cursor: pointer;
 }
 
-label{
-    background-color: #FFEC9A;
-    font-size: 10px;
-    font-weight: 400;
-    color: #6C3500;
-    max-width: 43px;
-    height: 18px;
-    border: 4px;
-    text-align: center;
-}
-
 .programs__title{
     text-align: center;
     color: $color-primary;
@@ -39,12 +28,13 @@ label{
 @media (min-width: 768px){
     .programs__cards{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
     }
 
     .cards__carrera, .cards__anio{
         flex: 1;
+        margin: 0;
     }
 
     .btn-card{
@@ -54,9 +44,5 @@ label{
 
     .programs__cards{
         cursor: default;
-    }
-
-    span{
-        display: none;
     }
 }
