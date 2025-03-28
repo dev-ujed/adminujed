@@ -1,9 +1,9 @@
 {% extends 'admin/master.html' %} {% block content %}
 
 <div>
-    {% if unidad %}
-        <div id="unidad-data" data-nombre-largo="{{ unidad.nombre_largo }}">
-            <detalles></detalles>
+    {% if carreras %}
+        <div id="carreras-data">
+            <detalles :carreras="{{ carreras|safe }}"></detalles>
         </div>
     {% else %}
         <p>No se encontró la unidad académica.</p>
