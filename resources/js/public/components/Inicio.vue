@@ -53,7 +53,7 @@
 				try {
 					const response = await window.axios.post('/login/', this.form);
 					const currentUrl = window.location.href;
-					window.location.href = currentUrl + 'admi/';
+					window.location.href = currentUrl + 'admi/unidad';
 				} catch (error) {
 					this.errors.message = error.response?.data?.error || 'Ocurrió un error desconocido.';
 				}
