@@ -4,16 +4,16 @@
     </div>
     <section class="section">
         <div class="container container--admin section--admin mb-16">
-            <form action="" class="db-search-form">
+            <form @submit.prevent="handleSearch" class="db-search-form">
                 <div class="search-wrapper">
-                    <input id="search-input" name="buscar" type="search" placeholder="Buscar por matrícula o nombre" class="form-field search-input">
+                    <input id="search-input" v-model="searchQuery" name="buscar" type="search" placeholder="Buscar por matrícula o nombre" class="form-field search-input" @keyup.enter="handleSearch">
                     <img src="/static/img/Icon search.png" alt="Buscar" class="search-icon">
                 </div>
             </form>
         </div>
         <div class="container container--admin">
             
-            <p class="">Se encontraron 37 registros para “Fernand”.</p>
+            <p class="" v-if="totalResults > 0">Se encontraron {{ totalResults }} registros para “{{ searchQuery }}”.</p>
 
             <div class="db-panel-p">
                 <div class="table-container">
@@ -27,86 +27,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>123456781</td>
-                                <td>Abreu Fernández Carolina</td>
+                            <tr v-for="profesor in profesores" :key="profesor.pl_matricula" class="record">
+                                <td>{{ profesor.pl_matricula }}</td>
+                                <td>{{ profesor.nom }}</td>
                                 <td>
-                                    <div class="unidad-academica">Facultad de Derecho</div>
-                                    <div class="unidad-academica">Facultad de Economía, Contaduría y Administración</div>
+                                    <div class="unidad-academica">{{ profesor.escuela_nombre }}</div>
                                 </td>
-                                <td><button class="btn btn--db-index">Ver</button></td>
-                            </tr>
-                            <tr>
-                                <td>123456783</td>
-                                <td>Fernández Reyna Mario Alberto</td>
-                                <td>Instituto de Ciencias Sociales</td>
-                                <td><button class="btn btn--db-index">Ver</button></td>
-                            </tr>
-                            <tr>
-                                <td>123456784</td>
-                                <td>Navarro Pérez Fernando</td>
-                                <td>Facultad de Medicina y Nutrición</td>
-                                <td><button class="btn btn--db-index">Ver</button></td>
-                            </tr>
-                            <tr>
-                                <td>123456782</td>
-                                <td>Rodríguez Sandoval Juan Fernando</td>
-                                <td>Facultad de Medicina Veterinaria y Zootecnia</td>
                                 <td><button class="btn btn--db-index">Ver</button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="list-container">
-                    <div class="record">
-                        <p class="record__name"><strong>Abreu Fernández Carolina <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
+                    <div class="record" v-for="profesor in profesores" :key="profesor.pl_matricula">
+                        <p class="record__name"><strong>{{ profesor.nom }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
                         <div class="record__contaier">
                             <div class="record__container--sub title">
-                                <p>Matrícula </p>
-                                <p>U.A.</p>
-                            </div>
-                            <div class="record__container--sub subtitle">
-                                <p>123456781</p>
-                                <p>FADER, FECA</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="record">
-                        <p class="record__name"><strong>Abreu Fernández Carolina <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
-                        <div class="record__contaier">
-                            <div class="record__container--sub title">
-                                <p>Matrícula </p>
-                                <p>U.A.</p>
-                            </div>
-                            <div class="record__container--sub subtitle">
-                                <p>123456781</p>
-                                <p>FADER, FECA</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="record">
-                        <p class="record__name"><strong>Abreu Fernández Carolina <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
-                        <div class="record__contaier">
-                            <div class="record__container--sub title">
-                                <p>Matrícula </p>
-                                <p>U.A.</p>
-                            </div>
-                            <div class="record__container--sub subtitle">
-                                <p>123456781</p>
-                                <p>FADER, FECA</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="record">
-                        <p class="record__name"><strong>Abreu Fernández Carolina <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
-                        <div class="record__contaier">
-                            <div class="record__container--sub title">
-                                <p>Matrícula </p>
-                                <p>U.A.</p>
-                            </div>
-                            <div class="record__container--sub subtitle">
-                                <p>123456781</p>
-                                <p>FADER, FECA</p>
+                                <p>{{ profesor.pl_matricula }} </p>
+                                <p>{{ profesor.escuela_nombre }}</p>
                             </div>
                         </div>
                     </div>
@@ -114,41 +52,29 @@
                 
                 <nav role="navegation" class="pagination-container">
                     <ul class="pagination pagination--dashboard">
-                        <li>
-                            <button class="pagination-item pagination-item--selected">1</button>
+                        <li v-for="page in visiblePages" :key="page">
+                            <button 
+                                class="pagination-item"
+                                :class="{ 'pagination-item--selected': currentPage === page }"
+                                @click="changePage(page)"
+                                :disabled="currentPage === page"
+                            >{{ page }}</button>
                         </li>
                         <li>
-                            <button class="pagination-item">2</button>
-                        </li>
-                        <li>
-                            <button class="pagination-item">3</button>
-                        </li>
-                        <li>
-                            <button class="pagination-item">4</button>
-                        </li>
-                        <li>
-                            <button class="pagination-item">...</button>
-                        </li>
-                        <li>
-                            <button class="pagination-item">20</button>
-                        </li>
-                        <li>
-                            <button class="pagination-next">
+                            <button class="pagination-next" @click="changePage('next')">
                                 <span class="pagination-next__icon"><span class="pagination-next__text">Siguiente</span><img src="/static/img/Vector.png" alt="icon next"></span>
                             </button>
                         </li>
                     </ul>
                     <div class="pagination--responsive">
-                        <button class="pagination-previous pagination-previous--disabled"><span class="pagination-previous__icon mr-1"><img src="/static/img/icon-prev.png" alt="prev"></span></button>
+                        <button class="pagination-previous pagination-previous--disabled" @click="goToPreviousPage" :class="{ 'pagination-previous--disabled': !hasPreviousPage }"><span class="pagination-previous__icon mr-1"><img src="/static/img/icon-prev.png" alt="prev"></span></button>
                         <div class="pagination-pages">
-                            <select name="pagination" id="pagination" class="form-field-p">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">14</option>
+                            <select name="pagination" id="pagination" class="form-field-p" v-model="currentPage">
+                                <option v-for="page in totalPages" :key="page" :value="page">{{ page }}</option>
                             </select>
-                            <span>de 14</span>
+                            <span>de {{ totalPages }}</span>
                         </div>
-                        <button type="button" rel="next" class="pagination-next"><span class="pagination-next__icon"><img src="/static/img/icon-next.png" alt="next"></span></button>
+                        <button type="button" rel="next" class="pagination-next" @click="goToNextPage" :class="{ 'pagination-next--disabled': !hasNextPage }"><span class="pagination-next__icon"><img src="/static/img/icon-next.png" alt="next"></span></button>
                     </div>
                 </nav>
             </div>
@@ -156,7 +82,127 @@
     </section>
 </template>
 <script>
+
+    import axios from 'axios';
+
     export default {
 		name: 'profesores',
+        data(){
+            return{
+                searchQuery: '',
+                profesores: [],
+                currentPage: 1,
+                totalPages: 1,
+                hasNextPage: true,
+                hasPreviousPage: true,
+                visiblePages: [],
+                totalResults: '',
+            }
+        },
+
+        computed: {
+            
+        },
+
+        watch: {
+            currentPage(newPage, oldPage){
+                if(newPage !== oldPage){
+                    this.getInfoProfes();
+                }
+            }
+        },
+
+        methods:{
+            async handleSearch() {
+                try {
+                    const response = await axios.get(`info/`, {
+                        params: {
+                            search: this.searchQuery,
+                            page: this.currentPage
+                        }
+                    });
+
+                    this.profesores = response.data.profesores;
+                    this.totalPages = response.data.total_pages;
+                    this.currentPage = response.data.current_page;
+                    this.totalResults = response.data.total_results;
+                } catch (error) {
+                    console.error("Error al buscar profesores:", error);
+                }
+            },
+
+            getInfoProfes(query = '') {
+                axios.get('info/', { 
+                    params: { 
+                        page: this.currentPage, 
+                        buscar: query 
+                    }
+                })
+                .then(response => {
+                    //console.log('Respuesta de la API: ', response.data);
+                    this.profesores = response.data.profesores;
+                    this.totalPages = response.data.total_pages;
+                    this.currentPage = response.data.current_page;
+                    this.hasNextPage = response.data.has_next;
+                    this.hasPreviousPage = response.data.has_previous;
+
+                    this.updateVisiblePages();
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            },
+
+            changePage(page) {
+                if (page === 'next' && this.currentPage < this.totalPages) {
+                this.currentPage++;
+                } else if (page === 'previous' && this.currentPage > 1) {
+                    this.currentPage--;
+                } else if (typeof page === 'number') {
+                    this.currentPage = page;
+                }
+
+                this.getInfoProfes();
+            },
+
+            changePageMovile(){
+                this.getInfoProfes();
+            },
+
+            updateVisiblePages() {
+                let pages = [];
+                const maxVisiblePages = 5;
+                let startPage = Math.max(this.currentPage - Math.floor(maxVisiblePages / 2), 1);
+                let endPage = Math.min(startPage + maxVisiblePages - 1, this.totalPages);
+
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(endPage - maxVisiblePages + 1, 1);
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    pages.push(i);
+                }
+
+                this.visiblePages = pages;
+            },
+
+            goToPreviousPage() {
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    this.getInfoProfes();
+                }
+            },
+
+            goToNextPage() {
+                if (this.currentPage < this.totalPages) {
+                    this.currentPage++;
+                    this.getInfoProfes();
+                }
+            },
+        },
+
+        mounted(){
+            this.getInfoProfes();
+        }
     }
 </script>
