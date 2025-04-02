@@ -4,6 +4,7 @@ import Admin from "./admin/components/dashboard/Admin.vue";
 import Profesores from "./admin/components/profesor/Profesores.vue";
 import Unidades from "./admin/components/unidades/Unidades.vue";
 import Detalles from './admin/components/unidades/Detalles.vue';
+import Programa from "./admin/components/unidades/Programa.vue";
 import axios from 'axios'; 
 
 window.axios = axios;
@@ -148,4 +149,5 @@ createApp({
 .component("profesor", Profesores)
 .component("unidades", Unidades)
 .component("detalles", Detalles)
+.component("programa", Programa)
 .mount("#dashboard");

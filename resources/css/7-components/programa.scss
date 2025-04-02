@@ -1,0 +1,66 @@
+.plan-container{
+    text-align: center;
+}
+
+.select-field{
+    width: 300px;
+}
+
+span{
+    font-weight: bold;
+}
+
+.db-panel__title p{
+    margin-top: 10px;
+    font-weight: 700;
+    color: #61666B;
+}
+
+.unidades-aprendizaje{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.semestre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+
+.semestre-title{
+    color: $color-primary;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+.materias-list {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.materias-list li {
+    border-radius: 4px;
+    background-color: #F8FAFC;
+    border: 1px solid #E9ECEE;
+    color: #15191D;
+    flex: 1;
+    text-align: center;
+    margin-top: 0.8rem;
+    min-height: 100px;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.8rem;
+
+}
