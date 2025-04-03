@@ -6,7 +6,9 @@
     font-size: rem(13px);
     height: 60px;
     justify-content: space-between;
-    position: relative;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
 
 .user-bar-admin__profile {
@@ -267,6 +269,8 @@
 @media (min-width: 768px) and (max-width: 1080px){
     .user-bar-admin{
         z-index: 1000;
+        position: fixed;
+        width: 100%;
     }
 
     .user-bar-admin__btn-text-large{
@@ -300,6 +304,8 @@
 
     .user-bar-admin{
         z-index: 1000;
+        position: fixed;
+        width: 100%;
     }
 
     .user-bar-admin__btn-icon {
