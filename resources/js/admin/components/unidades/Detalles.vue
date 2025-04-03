@@ -11,7 +11,7 @@
                 <p>No hay programas disponibles para esta preparatoria.</p>
             </div>
             <div v-for="carrera in preparatoriasActivas" :key="carrera.cve_carrera" class="programs__cards db-panel">
-                <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver más"></span></p>
+                <p class="cards__carrera" @click="verPrograma(carrera.cve_carrera)">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver más"></span></p>
                 <p class="cards__anio">{{ carrera.anio }}</p>
                 <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
             </div>
@@ -21,7 +21,7 @@
                 <p>No hay programas inactivos para esta preparatoria.</p>
             </div>
             <div v-for="carrera in preparatoriasInactivas" :key="carrera.cve_carrera" class="programs__cards db-panel">
-                <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver más"></span></p>
+                <p class="cards__carrera" @click="verPrograma(carrera.cve_carrera)">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver más"></span></p>
                 <p class="cards__anio">{{ carrera.anio }}</p>
                 <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
             </div>
@@ -40,7 +40,7 @@
                             <p>No hay programas activos de Licenciatura.</p>
                         </div>
                         <div class="programs__cards db-panel" v-for="carrera in licenciaturasActivas" :key="carrera.cve_carrera">
-                            <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
+                            <p class="cards__carrera" @click="verPrograma(carrera.cve_carrera)">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
                             <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
@@ -53,7 +53,7 @@
                             <p>No hay programas activos de Maestría.</p>
                         </div>
                         <div class="programs__cards db-panel" v-for="carrera in maestriasActivas" :key="carrera.cve_carrera">
-                            <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
+                            <p class="cards__carrera" @click="verPrograma(carrera.cve_carrera)">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
                             <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
@@ -66,7 +66,7 @@
                             <p>No hay programas activos de Doctorado.</p>
                         </div>
                         <div class="programs__cards db-panel" v-for="carrera in doctoradosActivas" :key="carrera.cve_carrera">
-                            <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
+                            <p class="cards__carrera" @click="verPrograma(carrera.cve_carrera)">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
                             <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
@@ -85,7 +85,7 @@
                             <p>No hay programas inactivos de Licenciatura.</p>
                         </div>
                         <div class="programs__cards db-panel" v-for="carrera in licenciaturasInactivas" :key="carrera.cve_carrera">
-                            <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
+                            <p class="cards__carrera" @click="verPrograma(carrera.cve_carrera)">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
                             <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
@@ -98,7 +98,7 @@
                             <p>No hay programas inactivos de Maestría.</p>
                         </div>
                         <div class="programs__cards db-panel" v-for="carrera in maestriasInactivas" :key="carrera.cve_carrera">
-                            <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
+                            <p class="cards__carrera" @click="verPrograma(carrera.cve_carrera)">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
                             <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
@@ -111,7 +111,7 @@
                             <p>No hay programas inactivos de Doctorado.</p>
                         </div>
                         <div class="programs__cards db-panel" v-for="carrera in doctoradosInactivas" :key="carrera.cve_carrera">
-                            <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
+                            <p class="cards__carrera" @click="verPrograma(carrera.cve_carrera)">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
                             <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
