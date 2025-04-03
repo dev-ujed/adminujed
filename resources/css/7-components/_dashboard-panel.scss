@@ -10,7 +10,7 @@ Dashboard panel
     border-radius: $radius;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: $gutter;
-    overflow: auto;
+    overflow: hidden;
     padding: 15px var(--db-panel-padding-x);
     position: relative;
 

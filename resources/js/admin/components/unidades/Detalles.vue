@@ -3,7 +3,7 @@
         <h1 class="db-heading--admin__title">{{ nombreEscuela }}</h1>
     </div>
     <section class="container container--admin section">
-        <p class="">Esta unidad tiene 4 horas académicas sin asignar.</p>
+        <!--<p class="">Esta unidad tiene 4 horas académicas sin asignar.</p>-->
 
         <div v-if="esPreparatoria" class="">
             <h1 class="programs__title">Programas activos</h1>
@@ -13,7 +13,7 @@
             <div v-for="carrera in preparatoriasActivas" :key="carrera.cve_carrera" class="programs__cards db-panel">
                 <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver más"></span></p>
                 <p class="cards__anio">{{ carrera.anio }}</p>
-                <button class="btn btn--db-index btn-card">Ver</button>
+                <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
             </div>
 
             <h1 class="programs__title">Programas inactivos</h1>
@@ -23,7 +23,7 @@
             <div v-for="carrera in preparatoriasInactivas" :key="carrera.cve_carrera" class="programs__cards db-panel">
                 <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver más"></span></p>
                 <p class="cards__anio">{{ carrera.anio }}</p>
-                <button class="btn btn--db-index btn-card">Ver</button>
+                <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
                         <div class="programs__cards db-panel" v-for="carrera in licenciaturasActivas" :key="carrera.cve_carrera">
                             <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
-                            <button class="btn btn--db-index btn-card">Ver</button>
+                            <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
                     </div>
 
@@ -55,7 +55,7 @@
                         <div class="programs__cards db-panel" v-for="carrera in maestriasActivas" :key="carrera.cve_carrera">
                             <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
-                            <button class="btn btn--db-index btn-card">Ver</button>
+                            <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
                         <div class="programs__cards db-panel" v-for="carrera in doctoradosActivas" :key="carrera.cve_carrera">
                             <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
-                            <button class="btn btn--db-index btn-card">Ver</button>
+                            <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                         <div class="programs__cards db-panel" v-for="carrera in licenciaturasInactivas" :key="carrera.cve_carrera">
                             <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
-                            <button class="btn btn--db-index btn-card">Ver</button>
+                            <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
                     </div>
 
@@ -100,7 +100,7 @@
                         <div class="programs__cards db-panel" v-for="carrera in maestriasInactivas" :key="carrera.cve_carrera">
                             <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
-                            <button class="btn btn--db-index btn-card">Ver</button>
+                            <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
                     </div>
 
@@ -113,7 +113,7 @@
                         <div class="programs__cards db-panel" v-for="carrera in doctoradosInactivas" :key="carrera.cve_carrera">
                             <p class="cards__carrera">{{ carrera.desc_carrera }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></p>
                             <p class="cards__anio">{{ carrera.anio }}</p>
-                            <button class="btn btn--db-index btn-card">Ver</button>
+                            <button class="btn btn--db-index btn-card" @click="verPrograma(carrera.cve_carrera)">Ver</button>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,22 @@
                 nombreEscuela: '',
             }
         },
+
+        methods:{
+            verPrograma(cve_carrera){
+                const carreraSeleccionada = this.carreras.find(carrera => carrera.cve_carrera === cve_carrera);
+        
+                if (carreraSeleccionada) {
+                    localStorage.setItem('carrera_nombre', carreraSeleccionada.desc_carrera);
+                    window.location.href = `/admi/programa/${cve_carrera}/`;
+                } else {
+                    console.error("Carrera no encontrada para el cve_carrera:", cve_carrera);
+                }
+            },
+        },
+
         computed:{
+
             esPreparatoria(){
                 return this.carreras.some(carrera => {
                     const claveNum = Number(carrera.cve_carrera);

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 
-from administracion.models import Escuelas, Carreras, Plan_estudio
+from administracion.models import *
 
 # Create your views here.
 
@@ -53,8 +53,41 @@ def carreras(request, cve_escuela):
             'anio': anio
         })
 
-    print(carreras_data)
-
-    #return JsonResponse(carreras_data, safe=False) 
     return render(request, 'admin/unidad/detalles.html', {'carreras': carreras_data})
-        
+
+def programa(request, cve_carrera):
+
+    planes_actual = Ciclo_carrera.objects.filter(cve_carrera=cve_carrera, estatus_ciclo='A').values('cve_plan')
+    
+    planes_actuales_dic = list(planes_actual)
+
+    return render(request, "admin/unidad/programa.html", {'cve_carrera': cve_carrera, 'planes_actuales': planes_actuales_dic})
+
+
+def materias_plan_actual(request):
+
+    cve_plan = request.GET.get('cve_plan')
+
+    if not cve_plan:
+        return JsonResponse({"error": "Falta el parámetro cve_plan"}, status=400)
+
+    materias = Plan_materia.objects.filter(cve_plan=cve_plan).values('cve_materia', 'semestre')
+
+    materias_por_semestre = {}
+
+    for materia in materias:
+        nombre_materia = Materias.objects.filter(cve_materia=materia['cve_materia']).values('desc_materia').first()
+
+        if nombre_materia:
+            if materia['semestre'] not in materias_por_semestre:
+                materias_por_semestre[materia['semestre']] = []
+            
+            materias_por_semestre[materia['semestre']].append({
+                'cve_materia': materia['cve_materia'],
+                'desc_materia': nombre_materia['desc_materia'],
+                'semestre': materia['semestre']
+            })
+    
+    print(materias_por_semestre)
+
+    return JsonResponse(materias_por_semestre, safe=False)
