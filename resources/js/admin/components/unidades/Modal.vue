@@ -86,7 +86,6 @@
       getProgresoColor(grupo) {
         const porcentaje = (grupo.inscritos / grupo.cupo) * 100;
         if(porcentaje == 100){
-          console.log(porcentaje);
           return 'progress-red';
         }
       },

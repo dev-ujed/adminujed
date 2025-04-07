@@ -108,7 +108,7 @@
                     .get(`/admi/materia-info/`, { params: { plan: planSeleccionado, carrera: cve_carrera, cve_materia: cve_materia } })
                     .then(response =>{
                         this.materia_info = response.data;
-                        console.log(this.materia_info);
+                        //console.log(this.materia_info);
                         this.modalVisible = true;
                     })
                     .catch(error => {
