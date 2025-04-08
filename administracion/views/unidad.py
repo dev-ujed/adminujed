@@ -126,7 +126,7 @@ def info_materias(request):
             'materias_encadenadas': ', '.join(sorted(set(nombres_materias_encadenadas))),
         })
     
-    # ESTA ES INFORMACIÓN DE LOS GRUPOS Y MAESTROS DE ESA MATERIA
+    # ESTA ES INFORMACIÓN DE LOS GRUPOS Y MAESTROS DE ESA MATERIA DEL CICLO ACTUAL
     grupos_info = []
 
     grupos = Grupo.objects.filter(cve_carrera=cve_carrera, cve_ciclo=ciclo_actual, cve_materia=cve_materia)
@@ -151,4 +151,54 @@ def info_materias(request):
             'inscritos': inscritos_dict.get(grupo.cve_grupo, 0),
         })
 
-    return JsonResponse({ 'grupos': grupos_info, 'info_materia': resultado_cadena }, safe=False)
+    ciclos = ciclos_anteriores()
+
+    return JsonResponse({ 'grupos': grupos_info, 'info_materia': resultado_cadena, 'ciclos': ciclos }, safe=False)
+
+def grupos_por_ciclo(request, cve_ciclo, cve_carrera, cve_materia, cve_plan):
+    grupos_info = []
+
+    grupos = Grupo.objects.filter(cve_carrera=cve_carrera, cve_ciclo=cve_ciclo, cve_materia=cve_materia)
+    inscritos_por_grupo = (
+        Materia_alumno.objects.filter(cve_grupo__in=grupos, cve_ciclo=cve_ciclo, cve_plan=cve_plan, cve_materia=cve_materia)
+        .values('cve_grupo')
+        .annotate(inscritos=Count('cve_alumno', distinct=True))
+    )
+
+    inscritos_dict = {item['cve_grupo']: item['inscritos'] for item in inscritos_por_grupo}
+
+    
+    for grupo in grupos:
+
+        nombre_maestro = Profesor_grupo.objects.filter(pl_matricula=grupo.cve_maestro).values_list('nom', flat=True).first() or 'Sin asignar'
+        grupos_info.append({
+            'grupo': grupo.cve_grupo,
+            'materia': grupo.cve_materia,
+            'maestro': grupo.cve_maestro,
+            'nom_maestro': nombre_maestro,
+            'cupo': grupo.cupo,
+            'inscritos': inscritos_dict.get(grupo.cve_grupo, 0),
+        })
+
+    print(grupos_info)
+    
+    return JsonResponse({ 'grupos': grupos_info }, safe=False)
+
+def ciclos_anteriores():
+
+    ciclo_actual = Oparametros_dtd.objects.get(id=61).valor
+
+    ciclos = (
+        Ciclos.objects
+        .filter(cve_ciclo__lte=ciclo_actual)
+        .order_by('-f_final')
+    )
+
+    ciclos_filtrados = [c for c in ciclos if c.cve_ciclo % 5 == 0][:4]
+
+    ciclos_json = [{'cve_ciclo': c.cve_ciclo, 'desc_ciclo': c.desc_ciclo} for c in ciclos_filtrados]
+
+    print("Ciclos obtenidos desde la base de datos:", ciclos_json)
+
+    return ciclos_json
+    #return render(request, "admin/unidad/programa.html", {'ciclos': ciclos_json})
