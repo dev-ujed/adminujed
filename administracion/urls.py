@@ -9,6 +9,7 @@ urlpatterns = [
 	path('carreras/<str:cve_escuela>/', unidad.carreras, name="carreras"),
 	path('materias_plan/', unidad.materias_plan_actual, name="materias_plan"),
 	path('materia-info/', unidad.info_materias, name="materia-info"),
+    path('grupos-ciclos/<int:cve_ciclo>/<str:cve_carrera>/<str:cve_materia>/<str:cve_plan>', unidad.grupos_por_ciclo, name='grupos_por_ciclo'),
 
 	path('profesor/', profesor.index, name='profesor' ),
 	path('profesor/info/', profesor.infoProfesor, name='profesor_info'),

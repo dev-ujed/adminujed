@@ -6,6 +6,7 @@
         <div v-if="planes_actuales.length > 0">
             <div class="section">
                 <div class="container plan-container">
+                    {{ ciclos }}
                     <div>
                         <select v-model="planSeleccionado" class="select-field form-field">
                             <option disabled value="">-- Selecciona un plan --</option>
@@ -33,7 +34,7 @@
                 </div>
             </div>
 
-            <modal v-if="modalVisible" :materia="materiaSeleccionada" :cve_carrera="cve_carrera" :cve_plan="planSeleccionado" :info="materia_info" @close="cerrarModal" />
+            <modal v-if="modalVisible" :ciclos="ciclos" :materia="materiaSeleccionada" :cve_carrera="cve_carrera" :cve_plan="planSeleccionado" :info="materia_info" @close="cerrarModal" />
         </div>
         <div v-else class="section">
             <div class="container"><p>Sin planes activos</p></div>
@@ -63,6 +64,11 @@
             planes_actuales:{
                 type: [String, Number],
                 required: true
+            },
+
+            ciclos: {
+                type: [String, Number],
+                required: true 
             },
         },
 
@@ -130,6 +136,7 @@
 
         mounted() {
             this.carreraNombre = localStorage.getItem('carrera_nombre') || 'Nombre no disponible';
+            console.log("ciclos: " + this.ciclos);
             
         }
     }

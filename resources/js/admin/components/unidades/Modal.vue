@@ -1,5 +1,5 @@
 <template>
-    <div class="modal modal-overlay" @click="handleClose">
+    <div class="modal modal-overlay">
       <div class="base-modal__panel modal-groups__card">
         <div class="modal-groups__close-button">
             <button  @click="handleClose"><img src="/static/img/Icon x.png" alt="Icono cerrar"></button>
@@ -22,13 +22,14 @@
             <hr>
             <div class="base-modal__container-grupos">
                 <div class="grupos-select">
-                    <select class="select-field form-field">
-                        <option disabled selected>Semestre 2025-A</option>
+                    <select v-model="selectedCiclo" class="select-field form-field" @change="obtenerGruposPorCiclo">
+                        <option value="" disabled selected>-- Ciclos anteriores --</option>
+                        <option v-for="ciclo in info.ciclos" :key="ciclo.cve_ciclo" :value="ciclo.cve_ciclo">{{ ciclo.desc_ciclo }}</option>
                     </select>
                 </div>
                 <p><span>Grupos asignados: </span>{{ gruposAsignados }} de {{ totalGrupos }}</p>
                 <div class="grupos">
-                    <div class="grupos__info" v-for="(grupo, index) in info.grupos" :key="index">
+                    <div class="grupos__info" v-for="(grupo, index) in gruposMostrar" :key="index">
                         <div class="grupos__info--header">
                             <div><h1 class="grupos__title">Grupo {{ grupo.grupo }}</h1></div>
                             <div class="grupos__cupo">
@@ -70,7 +71,18 @@
         
       info: {
         type: Object
+      },
+      ciclos: {
+        type: Array,
+        required: true 
       }
+    },
+
+    data(){
+        return{
+            selectedCiclo: "",
+            grupos: [],
+        }
     },
 
     computed: {
@@ -79,7 +91,10 @@
         },
         totalGrupos() {
             return this.info.grupos?.length || 0;
-        }
+        },
+        gruposMostrar() {
+            return this.grupos.length > 0 ? this.grupos : this.info.grupos || [];
+        },
     },
   
     methods: {
@@ -91,9 +106,24 @@
       },
 
       handleClose() {
-        if (event.target.closest(".base-modal__panel")) return;
         this.$emit('close');
-      }
+      },
+
+      obtenerGruposPorCiclo() {
+        if(this.selectedCiclo){
+                axios.get(`/admi/grupos-ciclos/${this.selectedCiclo}/${this.cve_carrera}/${this.info.info_materia[0].clave}/${this.cve_plan}`)
+                .then(response => {
+                    console.log("Grupos recibidos:", response.data);
+
+                    this.grupos = Array.isArray(response.data.grupos) ? response.data.grupos : [];
+
+                    console.log("Grupos asignados a this.grupos:", this.grupos);
+                })
+                .catch(error => {
+                    console.error("Error al obtener los grupos:", error);
+                });
+            }
+        }
     }
   };
 </script>
