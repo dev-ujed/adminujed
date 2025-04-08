@@ -179,8 +179,6 @@ def grupos_por_ciclo(request, cve_ciclo, cve_carrera, cve_materia, cve_plan):
             'cupo': grupo.cupo,
             'inscritos': inscritos_dict.get(grupo.cve_grupo, 0),
         })
-
-    print(grupos_info)
     
     return JsonResponse({ 'grupos': grupos_info }, safe=False)
 
@@ -197,8 +195,6 @@ def ciclos_anteriores():
     ciclos_filtrados = [c for c in ciclos if c.cve_ciclo % 5 == 0][:4]
 
     ciclos_json = [{'cve_ciclo': c.cve_ciclo, 'desc_ciclo': c.desc_ciclo} for c in ciclos_filtrados]
-
-    print("Ciclos obtenidos desde la base de datos:", ciclos_json)
 
     return ciclos_json
     #return render(request, "admin/unidad/programa.html", {'ciclos': ciclos_json})
