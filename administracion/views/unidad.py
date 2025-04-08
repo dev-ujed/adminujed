@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+from django.db.models import Count, F
 
 from administracion.models import *
 
@@ -58,8 +59,9 @@ def carreras(request, cve_escuela):
 def programa(request, cve_carrera):
 
     planes_actual = Ciclo_carrera.objects.filter(cve_carrera=cve_carrera, estatus_ciclo='A').values('cve_plan')
+    planes_con_nombre = Plan_estudio.objects.filter(cve_plan__in=planes_actual).values('cve_plan', 'desc_plan')
     
-    planes_actuales_dic = list(planes_actual)
+    planes_actuales_dic = list(planes_con_nombre)
 
     return render(request, "admin/unidad/programa.html", {'cve_carrera': cve_carrera, 'planes_actuales': planes_actuales_dic})
 
@@ -88,6 +90,65 @@ def materias_plan_actual(request):
                 'semestre': materia['semestre']
             })
     
-    print(materias_por_semestre)
+    #print(materias_por_semestre)
 
     return JsonResponse(materias_por_semestre, safe=False)
+
+def info_materias(request):
+
+    ciclo_actual = Oparametros_dtd.objects.get(id=61).valor
+    cve_carrera = request.GET.get('carrera')
+    cve_plan = request.GET.get('plan')
+    cve_materia = request.GET.get('cve_materia')
+
+
+    #INFORMACIÓN DE LA MATERIA
+    resultado_cadena = []
+    
+    plan_materia_base = Plan_materia.objects.filter(cve_plan=cve_plan, cve_materia=cve_materia).first()
+
+    if plan_materia_base:
+        materias_relacionadas = Materias_cadenas.objects.filter(cve_materia=cve_materia).values('cadena_padre')
+        materias_encadenadas = {cadena['cadena_padre'] for cadena in materias_relacionadas}
+
+        materia = Materias.objects.get(cve_materia=plan_materia_base.cve_materia)
+        
+        nombres_materias_encadenadas = []
+        for cve_materia in materias_encadenadas:
+            materia_encadenada = Materias.objects.get(cve_materia=cve_materia)
+            nombres_materias_encadenadas.append(materia_encadenada.desc_materia)
+    
+        resultado_cadena.append({
+            'materia': materia.desc_materia,
+            'clave': plan_materia_base.cve_materia,
+            'horas': plan_materia_base.horas_semana,
+            'creditos': plan_materia_base.creditos,
+            'materias_encadenadas': ', '.join(sorted(set(nombres_materias_encadenadas))),
+        })
+    
+    # ESTA ES INFORMACIÓN DE LOS GRUPOS Y MAESTROS DE ESA MATERIA
+    grupos_info = []
+
+    grupos = Grupo.objects.filter(cve_carrera=cve_carrera, cve_ciclo=ciclo_actual, cve_materia=cve_materia)
+    inscritos_por_grupo = (
+        Materia_alumno.objects.filter(cve_grupo__in=grupos, cve_ciclo=ciclo_actual, cve_plan=cve_plan, cve_materia=cve_materia)
+        .values('cve_grupo')
+        .annotate(inscritos=Count('cve_alumno', distinct=True))
+    )
+
+    inscritos_dict = {item['cve_grupo']: item['inscritos'] for item in inscritos_por_grupo}
+
+    
+    for grupo in grupos:
+
+        nombre_maestro = Profesor_grupo.objects.filter(pl_matricula=grupo.cve_maestro).values_list('nom', flat=True).first() or 'Sin asignar'
+        grupos_info.append({
+            'grupo': grupo.cve_grupo,
+            'materia': grupo.cve_materia,
+            'maestro': grupo.cve_maestro,
+            'nom_maestro': nombre_maestro,
+            'cupo': grupo.cupo,
+            'inscritos': inscritos_dict.get(grupo.cve_grupo, 0),
+        })
+
+    return JsonResponse({ 'grupos': grupos_info, 'info_materia': resultado_cadena }, safe=False)
