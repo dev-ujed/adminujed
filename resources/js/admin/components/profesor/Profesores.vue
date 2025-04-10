@@ -33,14 +33,14 @@
                                 <td>
                                     <div class="unidad-academica">{{ profesor.escuela_nombre }}</div>
                                 </td>
-                                <td><button class="btn btn--db-index">Ver</button></td>
+                                <td><a :href="`/admi/profesor/${profesor.pl_matricula}/`" class="btn btn--db-index">Ver</a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="list-container">
                     <div class="record" v-for="profesor in profesores" :key="profesor.pl_matricula">
-                        <p class="record__name"><strong>{{ profesor.nom }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></p>
+                        <a :href="`/admi/profesor/${profesor.pl_matricula}/`" class="record__name"><strong>{{ profesor.nom }} <span><img src="/static/img/Vector.png" alt="ver mas"></span></strong></a>
                         <div class="record__contaier">
                             <div class="record__container--sub title">
                                 <p>{{ profesor.pl_matricula }} </p>
@@ -139,7 +139,7 @@
                     }
                 })
                 .then(response => {
-                    //console.log('Respuesta de la API: ', response.data);
+                    console.log('Respuesta de la API: ', response.data);
                     this.profesores = response.data.profesores;
                     this.totalPages = response.data.total_pages;
                     this.currentPage = response.data.current_page;
