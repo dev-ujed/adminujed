@@ -1,0 +1,421 @@
+.color-primary{
+    color: #C00011;
+}
+
+.info-profesor{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+@media (min-width: 1080px) {
+    .info-profesor{
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 1rem;
+    }
+
+}
+
+.header-profile{
+    width: 100%;
+    padding: 1rem;
+}
+
+.header-profile__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+
+}
+
+@media (min-width: 768px) and (max-width: 1080px){
+    .header-profile__container{
+        align-items: stretch;
+        flex-direction: row;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .header-profile__avatar{
+        flex: 1;
+    }
+
+    .header-profile__info{
+        flex: 1;
+    }
+
+}
+
+@media (min-width: 1080px) {
+    .max-h{
+        max-height: 560px;
+    }
+}
+
+.header-profile__avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 15px;
+
+    & img {
+        border-radius: 60px;
+        width: 130px;
+        margin-bottom: 15px;
+    }
+
+    & .header-profile__avatar--info{
+        text-align: center;
+
+        & p{
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        & .color-primary-text{
+            color: $color-primary;
+            font-size: 18px;
+        }
+    }
+}
+
+.header-profile__info {
+    padding-left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+
+    & .profile-card__property-name{
+        color: $color-gray-60;
+        font-size: rem(14);
+    }
+
+    & .profile-card__property-value {
+        color: $color-gray-80;
+        font-size: rem(16);
+    }
+}
+
+/** CONTRATOS **/
+.contratos--movile{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.contratos-table{
+    display: none;
+}
+
+.contrato{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contrato__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.contrato__icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &p{
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    & img{
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+}
+
+.contrato__status_A{
+    background-color: #70F7A0;
+    border-radius: 4px;
+    width: 45px;
+    height: 18px;
+    text-align: center;
+
+    & p{
+        font-size: 10px;
+        font-weight: 400;
+    }
+}
+
+.contrato__status_I{
+    background-color: #FFEC9A;
+    border-radius: 4px;
+    width: 45px;
+    height: 18px;
+    text-align: center;
+    color: #6C3500;
+
+    & p{
+        font-size: 10px;
+        font-weight: 400;
+    }
+}
+
+.contrato__info {
+    display: none;
+}
+  
+.contrato.mostrar-info .contrato__info {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #F2F4F6;
+    border-radius: 8px;
+
+    .contrato__info--more{
+        display: flex;
+        align-items: flex-start;
+
+        .contrato__info--more__title{
+            font-weight: 700;
+            font-size: 14px;
+            min-width: 150px;
+        }
+
+        .contrato__info--more__data{
+            font-weight: 400;
+            font-size: 14px;
+            flex: 1;
+        }
+    }
+}
+
+@media (min-width: 768px){
+
+    .contratos-table{display: flex;}
+
+    .contratos--movile{
+        display: none;
+    }
+
+    .table-button{
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .table-button img{
+        margin-right: 10px;
+    }
+
+    .contrato__info {
+        display: block;
+        padding: 1rem;
+        background-color: #F2F4F6;
+        border-radius: 8px;
+        width: 100%;
+
+        .contrato__info--more{
+            display: flex;
+            align-items: flex-start;
+
+            .contrato__info--more__title{
+                font-weight: 700;
+                font-size: 14px;
+                min-width: 150px;
+            }
+
+            .contrato__info--more__data{
+                font-weight: 400;
+                font-size: 14px;
+                flex: 1;
+            }
+        }
+    }
+}
+/**************/
+
+/** NOMBRAMIENTOS **/
+.nombramientos--movile{
+    width: 100%;
+}
+
+.nombramientos-table{
+    display: none;
+}
+
+.nombramiento{
+    line-height: 1;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #E0E3E6;
+    margin-top: 10px;
+}
+
+.nombramiento img{
+    margin-right: 5px;
+}
+
+.nombramiento__title{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.nombramiento__fac{
+    font-size: 14px;
+    font-weight: 400;
+    color: #74777A;
+}
+.nombramiento__link{
+    text-decoration: none;
+    color: #282C31;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .nombramientos--movile{
+        display: none;
+    }
+
+    .nombramientos-table{
+        display: flex;
+    }
+
+    table{
+        border-bottom: 1px solid #E0E3E6;
+    }
+}
+/******************/
+
+/* Grados académicios */
+.grados-academicos{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.grados__title{
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.grados__info p{
+    margin: 0;
+    line-height: 1.2;
+    color: #42464B;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    .grados{
+        display: flex;
+        justify-content: center;
+    }
+
+    .grados__title{
+        flex: 1;
+    }
+
+    .grados__info{
+        flex: 2;
+    }
+}
+/*********************/
+
+/* Carga horaria */
+.select{
+    padding: 1rem;
+}
+
+.carga-horaria--movile{
+    display: flex;
+    flex-direction: column;
+}
+
+.horario{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 1px solid #E0E3E6;
+}
+
+.horario__titles{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.horario__titles h1{
+    font-size: 18px;
+    font-weight: 400;
+    color: #282C31;
+}
+
+.horario__titles img{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.horario__titles p{
+    font-size: 15px;
+    font-weight: 400;
+    color: #42464B;
+}
+
+.horario__info--more {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+  
+.horario__info--more__title {
+    flex: 1;
+}
+
+.horario__info--more__title p{
+    color: #82878C;
+    font-size: 14px;
+    font-weight: 700;
+}
+  
+.horario__info--more__data {
+    flex: 1;
+}
+
+.horario__info--more__data p{
+    font-size: 14px;
+    font-weight: 400px;
+    color: #42464B;
+}
+
+.horarios-tabla{
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .carga-horaria--movile{
+        display: none;
+    }
+
+    .horarios-tabla{
+        display: flex;
+    }
+
+    table tbody tr {
+        border-bottom: 1px solid #E0E3E6
+    }
+}
+
+/****************/

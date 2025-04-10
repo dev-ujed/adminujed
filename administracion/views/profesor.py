@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import generics
 from django.core.paginator import Paginator
+from django.shortcuts import render, get_object_or_404
 
-from administracion.models import Profesor_grupo, Oparametros_dtd, Escuelas
+from administracion.models import Profesor_grupo, Oparametros_dtd, Escuelas, Usuarios
 
 # Create your views here.
 
@@ -19,7 +20,7 @@ def infoProfesor(request):
 
         search_query = request.GET.get('search', '').strip().upper()
 
-        profesores = list(Profesor_grupo.objects.filter(pl_ciclo=ciclo_actual).values(
+        profesores = list(Profesor_grupo.objects.values(
             'pl_matricula', 'nom', 'escuela', 'autorizacion', 'pl_ciclo'
         ))
 
@@ -59,3 +60,24 @@ def infoProfesor(request):
         }
 
         return JsonResponse(response_data, safe=False)
+
+def detalles_profesor(request, matricula):
+    profesor =  Profesor_grupo.objects.filter(pl_matricula=matricula).first()
+    usuario = Usuarios.objects.filter(matricula=matricula).first()
+
+    if not usuario:
+        return JsonResponse({'error': 'La matrícula no está en la tabla de usuarios'}, status=404)
+
+    if profesor:
+        profesor_data = {
+            'pl_matricula': profesor.pl_matricula,
+            'nom': profesor.nom,
+            'escuela': profesor.escuela,
+            'autorizacion': profesor.autorizacion,
+            'pl_ciclo': profesor.pl_ciclo,
+            'correo': usuario.correo,
+            'activo': usuario.activo,
+        }
+
+
+    return render(request, 'admin/profesor/detalles.html', {'profesor': profesor_data})
