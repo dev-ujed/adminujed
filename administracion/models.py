@@ -193,12 +193,3 @@ class Ciclos(models.Model):
 		db_table 	= 'CICLO'
 		app_label 	= 'desarrollo'
 		
-class Usuarios(models.Model):
-	matricula = models.CharField(max_length=8, null=True, primary_key=True)
-	correo =  models.CharField(max_length=120)
-	activo = models.CharField(max_length=2)
-
-	class Meta:
-		managed = False
-		db_table = '"DESARROLLO"."USUARIOS"'
-		app_label = 'desarrollo'
