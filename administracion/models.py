@@ -167,6 +167,16 @@ class Materias_cadenas(models.Model):
 		app_label 		= 'desarrollo'
 		verbose_name_plural = "Materias_cadenas"
 
+class Usuarios(models.Model):
+	matricula = models.CharField(max_length=8, null=True, primary_key=True)
+	correo =  models.CharField(max_length=120)
+	activo = models.CharField(max_length=2)
+
+	class Meta:
+		managed = False
+		db_table = '"DESARROLLO"."USUARIOS"'
+		app_label = 'desarrollo'
+
 class Ciclos(models.Model):
 	cve_ciclo 				= models.PositiveSmallIntegerField(primary_key=True)
 	f_inicial 				= models.DateField()
