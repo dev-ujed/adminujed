@@ -192,4 +192,3 @@ class Ciclos(models.Model):
 		managed 	= False
 		db_table 	= 'CICLO'
 		app_label 	= 'desarrollo'
-		
