@@ -166,3 +166,19 @@ class Materias_cadenas(models.Model):
 		db_table 		= '"DESARROLLO"."CADENA"'
 		app_label 		= 'desarrollo'
 		verbose_name_plural = "Materias_cadenas"
+
+class Ciclos(models.Model):
+	cve_ciclo 				= models.PositiveSmallIntegerField(primary_key=True)
+	f_inicial 				= models.DateField()
+	f_final 				= models.DateField()
+	cve_tipo_ciclo 			= models.PositiveSmallIntegerField()
+	desc_ciclo 				= models.CharField(max_length=16)
+	admision				= models.CharField(max_length=1)
+	actual_adm				= models.CharField(max_length=1)
+	cve_tipo_ciclo			= models.IntegerField()
+	actual_ni				= models.CharField(max_length=1)
+
+	class Meta:
+		managed 	= False
+		db_table 	= 'CICLO'
+		app_label 	= 'desarrollo'
