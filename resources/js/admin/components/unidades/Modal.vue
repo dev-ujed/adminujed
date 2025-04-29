@@ -113,11 +113,7 @@
         if(this.selectedCiclo){
                 axios.get(`/admi/grupos-ciclos/${this.selectedCiclo}/${this.cve_carrera}/${this.info.info_materia[0].clave}/${this.cve_plan}`)
                 .then(response => {
-                    console.log("Grupos recibidos:", response.data);
-
                     this.grupos = Array.isArray(response.data.grupos) ? response.data.grupos : [];
-
-                    console.log("Grupos asignados a this.grupos:", this.grupos);
                 })
                 .catch(error => {
                     console.error("Error al obtener los grupos:", error);

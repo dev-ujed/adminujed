@@ -6,7 +6,7 @@
         <div class="container container--admin section--admin mb-16">
             <form @submit.prevent="handleSearch" class="db-search-form">
                 <div class="search-wrapper">
-                    <input id="search-input" v-model="searchQuery" name="buscar" type="search" placeholder="Buscar por matrícula o nombre" class="form-field search-input" @keyup.enter="handleSearch">
+                    <input id="search-input" v-model="searchQuery" name="buscar" placeholder="Buscar por matrícula o nombre" class="form-field search-input" @keyup.enter="handleSearch">
                     <img src="/static/img/Icon search.png" alt="Buscar" class="search-icon">
                 </div>
             </form>
@@ -139,7 +139,6 @@
                     }
                 })
                 .then(response => {
-                    console.log('Respuesta de la API: ', response.data);
                     this.profesores = response.data.profesores;
                     this.totalPages = response.data.total_pages;
                     this.currentPage = response.data.current_page;

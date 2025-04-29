@@ -2,6 +2,7 @@ from django.db import models
 
 class Escuelas(models.Model):
 	cve_escuela = models.CharField(primary_key=True, max_length=10)
+	desc_escuela = models.CharField(max_length=120)
 	desc_completo = models.CharField(max_length=100)
 	desc_corto = models.CharField()
 	ubicacion = models.CharField(max_length=30)
@@ -72,15 +73,16 @@ class Oparametros_dtd(models.Model):
 		app_label 	= 'desarrollo'
 
 class Materias(models.Model):
-    materia_id 				= models.CharField(primary_key=True, max_length=5)
-    desc_materia 			= models.CharField(null=False, max_length=100)
-    cve_materia 			= models.CharField(max_length=8)
+	materia_id 				= models.CharField(primary_key=True, max_length=5)
+	desc_materia 			= models.CharField(null=False, max_length=100)
+	desc_corto              = models.CharField(null=False, max_length=100)
+	cve_materia 			= models.CharField(max_length=8)
 
-    class Meta:
-        managed = False
-        db_table = "MATERIA"
-        app_label = 'desarrollo'
-        verbose_name_plural = "Materias"
+	class Meta:
+		managed = False
+		db_table = "MATERIA"
+		app_label = 'desarrollo'
+		verbose_name_plural = "Materias"
 
 class Ciclo_carrera(models.Model):
 	cve_ciclo 				= models.PositiveSmallIntegerField(primary_key=True)
@@ -97,17 +99,19 @@ class Ciclo_carrera(models.Model):
 		app_label 	= 'desarrollo'
 
 class Plan_materia(models.Model):
-    plan_materia_id 		= models.AutoField(primary_key=True)
-    cve_plan       			= models.CharField(max_length=8)
-    cve_materia 			= models.CharField(max_length=8)
-    horas_semana 			= models.PositiveSmallIntegerField()
-    creditos 				= models.PositiveSmallIntegerField()
-    semestre 				= models.IntegerField(null=True)
+	plan_materia_id 		= models.AutoField(primary_key=True)
+	cve_plan       			= models.CharField(max_length=8)
+	cve_materia 			= models.CharField(max_length=8)
+	horas_semana 			= models.PositiveSmallIntegerField()
+	creditos 				= models.PositiveSmallIntegerField()
+	semestre 				= models.IntegerField(null=True)
+	virtual                 = models.CharField(max_length=2)
+	plan_estudio_id         = models.IntegerField()
 
-    class Meta:
-        managed 	= False
-        db_table 	= 'PLAN_MATERIA'
-        app_label 	= 'desarrollo'
+	class Meta:
+		managed 	= False
+		db_table 	= 'PLAN_MATERIA'
+		app_label 	= 'desarrollo'
 
 class Grupo(models.Model):
 	cve_grupo				= models.CharField(primary_key=True, max_length=8)
@@ -121,6 +125,7 @@ class Grupo(models.Model):
 	grupo_id				= models.IntegerField()
 	salon					= models.CharField(max_length=15)
 	cupo					= models.PositiveSmallIntegerField()
+	plan_estudio_id         = models.IntegerField()
 	
 	class Meta:
 		managed 	= False

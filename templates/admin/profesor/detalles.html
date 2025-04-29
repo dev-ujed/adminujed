@@ -1,7 +1,7 @@
 {% extends 'admin/master.html' %} {% block content %}
 
 <div>
-    <detalles-profesor :profesor="{{profesor}}"></detalles-profesor>
+    <detalles-profesor :profesor="{{profesor}}" :info_materias="{{ info_materias|safe }}" :ciclos="{{ ciclos|safe}}"></detalles-profesor>
 </div>
 
 {% endblock %}

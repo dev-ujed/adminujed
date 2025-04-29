@@ -28,7 +28,6 @@
                  </div>
             </div>
         </div>
-
         <div class="info-profesor__datos">
             <div class="db-panel">
                 <div class="db-panel__title"><p>Contratos</p></div>
@@ -194,82 +193,59 @@
             <div class="db-panel">
                 <div class="db-panel__title"><p>Carga horaria</p></div>
                 <div class="select plan-container">
-                    <select class="select-field form-field">
-                        <option disabled value="">Semestre 2025-A</option>
-                        <option>Semestre 2025-A</option>
+                    <select v-model="selectedCiclo" class="select-field form-field" @change="loadCicloDetails">
+                        <option value="" disabled selected>-- Ciclos anteriores --</option>
+                        <option v-for="ciclo in ciclos" :key="ciclo.cve_ciclo" :value="ciclo.cve_ciclo">{{ ciclo.desc_ciclo }}</option>
                     </select>
                 </div>
                 <div class="carga-horaria--movile">
-                    <div class="horario record">
-                        <div class="horario__titles">
-                            <h1>Teorías de la democracia</h1>
-                            <p><img src="/static/img/Icon-fac.svg" alt="icono faculdad">Facultad de Derecho</p>
-                        </div>
-                        <div class="horario__info">
-                            <div class="horario__info--more">
-                                <div class="horario__info--more__title"><p>Nivel</p></div>
-                                <div class="horario__info--more__data"><p>Licenciatura</p></div>
+                    <div v-if="materiasMostrar.length > 0">
+                        <div class="horario record" v-for="(materia, index) in materiasMostrar" :key="index">
+                            <div class="horario__titles">
+                                <h1>{{ materia.materia }}</h1>
+                                <p><img src="/static/img/Icon-fac.svg" alt="icono faculdad">{{ materia.nombre_escuela_corto }}</p>
                             </div>
-                            <div class="horario__info--more">
-                                <div class="horario__info--more__title"><p>Modalidad</p></div>
-                                <div class="horario__info--more__data"><p>Presencial</p></div>
-                            </div>
-                            <div class="horario__info--more">
-                                <div class="horario__info--more__title"><p>Horas semanales</p></div>
-                                <div class="horario__info--more__data"><p>30</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="horario record">
-                        <div class="horario__titles">
-                            <h1>Teorías de la democracia</h1>
-                            <p><img src="/static/img/Icon-fac.svg" alt="icono faculdad">Facultad de Derecho</p>
-                        </div>
-                        <div class="horario__info">
-                            <div class="horario__info--more">
-                                <div class="horario__info--more__title"><p>Nivel</p></div>
-                                <div class="horario__info--more__data"><p>Licenciatura</p></div>
-                            </div>
-                            <div class="horario__info--more">
-                                <div class="horario__info--more__title"><p>Modalidad</p></div>
-                                <div class="horario__info--more__data"><p>Presencial</p></div>
-                            </div>
-                            <div class="horario__info--more">
-                                <div class="horario__info--more__title"><p>Horas semanales</p></div>
-                                <div class="horario__info--more__data"><p>30</p></div>
+                            <div class="horario__info">
+                                <div class="horario__info--more">
+                                    <div class="horario__info--more__title"><p>Nivel</p></div>
+                                    <div class="horario__info--more__data"><p>{{ materia.nivel }}</p></div>
+                                </div>
+                                <!--<div class="horario__info--more">
+                                    <div class="horario__info--more__title"><p>Modalidad</p></div>
+                                    <div class="horario__info--more__data"><p>Presencial</p></div>
+                                </div>-->
+                                <div class="horario__info--more">
+                                    <div class="horario__info--more__title"><p>Horas semanales</p></div>
+                                    <div class="horario__info--more__data"><p>{{ materia.horas_semanas }}</p></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <p v-else>Sin carga horario en este ciclo</p>
                 </div>
 
                 <div class="horarios-tabla">
-                    <table>
+                    <table v-if="materiasMostrar.length > 0">
                         <thead>
                             <tr>
                                 <th>Unidad académica</th>
                                 <th>Materia</th>
-                                <th>Niivel</th>
-                                <th>Modalidad</th>
+                                <th>Nivel</th>
+                                <!--<th>Modalidad</th>-->
                                 <th>Horas semanales</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Facultad de Derecho</td>
-                                <td>Teorías de la democracia</td>
-                                <td>Licenciatura</td>
-                                <td>Presencial</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>Facultad de Economía, Contaduría y Administración</td>
-                                <td>Administración III</td>
-                                <td>Licenciatura</td>
-                                <td>Virtual</td>
-                                <td>8</td>
+                            <tr v-for="(materia, index) in materiasMostrar" :key="index">
+                                <td>{{ materia.nombre_escuela }}</td>
+                                <td>{{ materia.materia }}</td>
+                                <td>{{ materia.nivel }}</td>
+                                <!--<td>{{ materia.modalidad }}</td>-->
+                                <td>{{ materia.horas_semanas }}</td>
                             </tr>
                         </tbody>
                     </table>
+                    <p v-else>Sin carga horario en este ciclo</p>
                 </div>
             </div>
         </div>
@@ -282,7 +258,12 @@
         name: 'detalles-profesor',
 
         props: {
-            profesor: Object, 
+            profesor: Object,
+            info_materias: Object,
+            ciclos: {
+                type: Array,
+                required: true 
+            }
         },
 
         data(){
@@ -290,6 +271,14 @@
                 showMoreInfo: false,
                 buttonImage: "/static/img/Btn more.svg",
                 buttonText: 'Más',
+                selectedCiclo: "",
+                info_materias_ciclo: {},
+            }
+        },
+
+        computed: {
+            materiasMostrar() {
+                return this.selectedCiclo ? this.info_materias_ciclo : this.info_materias;
             }
         },
 
@@ -303,7 +292,26 @@
                 this.showMoreInfo = !this.showMoreInfo;
                 this.buttonImage = this.showMoreInfo ? "/static/img/minus-circle.svg" : "/static/img/Btn more.svg";
                 this.buttonText = this.showMoreInfo ? "Menos" : "Más";
+            },
+
+            async loadCicloDetails() {
+                if (!this.selectedCiclo) {
+                    return;
+                }
+                try {
+                    const response = await axios.get(`/admi/profesor/materias/${this.profesor.pl_matricula}/${this.selectedCiclo}`);
+                    this.info_materias_ciclo = response.data;
+                } catch (error) {
+                    console.error('Error al cargar las materias:', error);
+                }
+            },
+
+            cambiarCiclo(nuevoCiclo) {
+                this.selectedCiclo = nuevoCiclo;
+                this.loadCicloDetails();
             }
+
+        
         }
     }
 </script>
