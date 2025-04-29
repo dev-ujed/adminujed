@@ -14,4 +14,5 @@ urlpatterns = [
 	path('profesor/', profesor.index, name='profesor' ),
 	path('profesor/info/', profesor.infoProfesor, name='profesor_info'),
     path('profesor/<str:matricula>/', profesor.detalles_profesor, name='detalles_profesor'),
+    path('profesor/materias/<str:matricula>/<int:cve_ciclo>/', profesor.detalles_materias_ciclo, name='detalles_materias_ciclo'),
 ]
